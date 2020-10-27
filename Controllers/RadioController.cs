@@ -44,7 +44,7 @@ namespace RadioPlayer.Controllers
 
         [HttpPost]
         [ActionName("CountStation")]
-        public void CountStation(string stationId)
+        public void CountStation([FromBody]string stationId)
         {
             try
             {
