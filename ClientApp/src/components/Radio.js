@@ -6,8 +6,10 @@ export default class Radio extends Component {
 
     render() {
         return (
-            <NavBar />
-            <Content />
+            <React.Fragment>
+                <NavBar />
+                <Content />
+            </React.Fragment>
         );
     }
 }
