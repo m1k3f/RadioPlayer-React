@@ -4,15 +4,15 @@ namespace RadioPlayer.Models
 {
     public class Station
     {
-        public string Id {get; set;}
+        public string Stationuuid {get; set;}
         public string Name {get; set;}
-        public string UrlStream {get; set;}
-        public string UrlStreamResolved {get; set;}
-        public string UrlHomepage {get; set;}
-        public string UrlFavIcon {get; set;}
+        public string Url {get; set;}
+        public string Url_resolved {get; set;}
+        public string Homepage {get; set;}
+        public string Favicon {get; set;}
         public string Tags {get; set;}
         public string Country {get; set;}
-        public string CountryCode {get; set;}
+        public string Countrycode {get; set;}
         public string State {get; set;}
         public string Language {get; set;}
         public int Votes {get; set;}
