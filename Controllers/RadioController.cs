@@ -35,6 +35,7 @@ namespace RadioPlayer.Controllers
             catch(Exception ex)
             {
                 stations.StationList = null;
+                stations.ServiceError = new ServiceError();
                 stations.ServiceError.ErrorMessage = ex.Message;
                 stations.ServiceError.StackTrace = ex.StackTrace;
             }
