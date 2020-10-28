@@ -26,14 +26,17 @@ namespace RadioPlayer.Radio
         {
             var stationList = new List<Station>();
 
-            //RadioBrowser api call: <baseUrl>/json/stations/search
             var searchCriteriaJson = new StringContent(
-                JsonSerializer.Serialize(searchCriteria), Encoding.UTF8, "application/json"
+                JsonSerializer.Serialize(searchCriteria, GetSerializeOptions()), 
+                Encoding.UTF8, 
+                "application/json"
             );
-            var searchUrl = $"{_baseUrl}/json/stations/search";
+            var searchUrl = $"https://{_baseUrl}/json/stations/search";
             var apiResponseContent = await GetApiResponseContent(searchUrl, searchCriteriaJson);
 
-            //Deserialize JSON response data to station list
+            //Deserialize JSON response data to station list            
+            var deserializedStations = JsonSerializer.Deserialize<IEnumerable<Station>>(apiResponseContent, GetDeserializeOptions());
+            stationList.AddRange(deserializedStations);
 
             return stationList;
         }
@@ -49,12 +52,35 @@ namespace RadioPlayer.Radio
 
         private async Task<string> GetApiResponseContent(string url, StringContent jsonData)
         {
-            HttpResponseMessage response = await _client.PostAsync(url, jsonData);                        
+            HttpResponseMessage response = await _client.PostAsync(url, jsonData).ConfigureAwait(false);                        
             response.EnsureSuccessStatusCode();
 
             var responseBody = await response.Content.ReadAsStringAsync();
 
             return responseBody;
+        }
+
+        private JsonSerializerOptions GetSerializeOptions()
+        {
+            return (new JsonSerializerOptions
+                {
+                    IgnoreNullValues = true,
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                }
+            );
+        }
+
+        private JsonSerializerOptions GetDeserializeOptions()
+        {
+            var deserializeOptions = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true                    
+            };
+
+            deserializeOptions.Converters.Add(new RadioPlayer.Util.DateTimeConverter());
+            deserializeOptions.Converters.Add(new RadioPlayer.Util.BooleanConverter());
+
+            return deserializeOptions;
         }
     }
 }
