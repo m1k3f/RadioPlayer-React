@@ -56,5 +56,26 @@ namespace RadioPlayer.Controllers
 
             }
         }
+
+        [HttpPost]
+        [ActionName("GetImageData")]
+        public async Task<StationImage> GetStationImage([FromBody]StationImage stationImage)
+        {
+            try
+            {
+                Util.ImageDownload imageDownload = new Util.ImageDownload();
+                return await imageDownload.GetStationImage(stationImage);
+
+            }
+            catch(Exception ex)
+            {
+                stationImage.ImageFileType = null;
+                stationImage.ImageBytes = null;
+                stationImage.ServiceError = new ServiceError();
+                stationImage.ServiceError.ErrorMessage = ex.Message;
+                stationImage.ServiceError.StackTrace = ex.StackTrace;
+                return stationImage;
+            }
+        }
     }
 }
