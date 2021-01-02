@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import StationImage from './StationImage'
+import StationImage from './controls/StationImage'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistStations from './PlaylistStations'
 
