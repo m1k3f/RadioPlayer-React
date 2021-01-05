@@ -8,6 +8,7 @@ export default class Controls extends Component {
     render() {
         return (
             <section>
+                {/* <StationImage /> */}
                 <div>
                     <PreviousButton />
                     <PlayButton />

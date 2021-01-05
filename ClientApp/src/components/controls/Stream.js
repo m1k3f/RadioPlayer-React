@@ -6,14 +6,14 @@ export default class Stream extends Component {
     static contextType = RadioContext;
 
     handlePlay = (e) => {
-        this.streamer.play();
+        // this.streamer.play();
     }
 
     render() {
         return(
-            <div>
+            <section className="stream">
                 <video ref={el => this.streamer = el} onPlay={this.handlePlay} />
-            </div>
+            </section>
         );
     }
 }

@@ -9,7 +9,7 @@ export default class StationSearch extends Component {
 
     render() {
         return (
-            <section>
+            <section className="stationSearch">
                 <AdvancedSearchButton />
                 <SearchBar />
                 <ClearSearchButton />
