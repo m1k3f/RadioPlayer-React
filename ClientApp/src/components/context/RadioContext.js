@@ -30,11 +30,11 @@ class RadioProvider extends Component {
                 };
             }
             else {
-                playlist = JSON.parse(playlist);
+                radioPlaylist = JSON.parse(radioPlaylist);
             }
         }
 
-        return playlist;
+        return radioPlaylist;
     }
 
     saveAndRefreshPlaylist = (playlist) => {
