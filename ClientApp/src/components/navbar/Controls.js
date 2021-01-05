@@ -8,9 +8,11 @@ export default class Controls extends Component {
     render() {
         return (
             <section>
-                <PreviousButton />
-                <PlayButton />
-                <NextButton />
+                <div>
+                    <PreviousButton />
+                    <PlayButton />
+                    <NextButton />
+                </div>
                 <VolumeSlider />
             </section>
         );

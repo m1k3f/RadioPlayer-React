@@ -1,3 +1,29 @@
-﻿body {
+﻿* {
+    box-sizing: border-box;
+    /* font-family: ; */
+}
 
+body {
+    /* width: 90%; */
+    margin: auto;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header section {
+    display: flex;
+    flex-direction: column;
+}
+
+header section button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #0088cc;
+    text-align: center;
 }

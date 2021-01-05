@@ -4,7 +4,9 @@ export default class SourceControlLink extends Component {
 
     render() {
         return (
-            <a href="#" />
+            <a href="https://github.com/m1k3f/RadioPlayer-React">
+                <i className="fab fa-github"></i>
+            </a>
         );
     }
 }
