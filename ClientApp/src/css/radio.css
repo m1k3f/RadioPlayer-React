@@ -13,17 +13,32 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 10vh;
+    background-image: linear-gradient(#e6e6e6, #f2f2f2, #ffffff);
 }
 
 header section {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header section > div {
+    opacity: .8;
 }
 
 header section button {
     outline: none;
     border: none;
+    background:none;
     cursor: pointer;
     color: #0088cc;
     text-align: center;
+    font-size: 30px;
+    padding: 4px;
+}
+
+header > a > i {
+    color: black;
 }

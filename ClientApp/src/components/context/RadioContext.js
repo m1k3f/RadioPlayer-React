@@ -9,7 +9,8 @@ class RadioProvider extends Component {
         super();
         this.state = {
             selectedStation: null,
-            radioPlaylist: this.getPlaylistStorage()
+            radioPlaylist: this.getPlaylistStorage(),
+            playStationId: null
         };
     }
 
@@ -47,10 +48,16 @@ class RadioProvider extends Component {
         });
     }
 
+    playStation = (stationId) => {
+        this.setState({
+            playStationId: stationId
+        });
+    }
+
     render() {
         const { children } = this.props
-        const { selectedStation, radioPlaylist } = this.state
-        const { setStation, saveAndRefreshPlaylist } = this
+        const { selectedStation, radioPlaylist, playStationId } = this.state
+        const { setStation, saveAndRefreshPlaylist, playStation } = this
 
         return(
             <RadioContext.Provider 
@@ -59,7 +66,9 @@ class RadioProvider extends Component {
                         selectedStation,
                         setStation,
                         radioPlaylist,
-                        saveAndRefreshPlaylist
+                        saveAndRefreshPlaylist,
+                        playStationId,
+                        playStation
                     }
                 }
                 >
