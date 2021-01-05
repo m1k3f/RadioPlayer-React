@@ -24,10 +24,6 @@ header section {
     align-items: center;
 }
 
-header section > div {
-    opacity: .8;
-}
-
 header section button {
     outline: none;
     border: none;
@@ -41,4 +37,38 @@ header section button {
 
 header > a > i {
     color: black;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 80%; */
+}
+
+main .stream {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+main .playlist {
+    display: flex;
+    flex-direction: column;
+}
+
+main .playlist .playlistHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main .playlist .playlistHeader button {
+    outline: none;
+    border: none;
+    background: none;
+}
+
+main .stationSearch {
+
 }
