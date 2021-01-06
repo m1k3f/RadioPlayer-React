@@ -6,18 +6,40 @@ import PlaylistStations from './PlaylistStations'
 
 export default class Playlist extends Component {
 
+    state = {
+        playlist: null
+    }
+
     static contextType = RadioContext;
 
-    render() {
+    componentDidMount() {
         const { radioPlaylist } = this.context;
-        let playlist = radioPlaylist.playlist;
+        let contextPlaylist = radioPlaylist.playlist;
+        this.setState({
+            playlist: contextPlaylist
+        });
+    }
 
+    showPlaylist = () => {
+        let content = null;
+        if (this.state.playlist != null && this.state.playlist.length > 0) {
+            content = (
+                <section className="playlist">
+                    {/* <StationImage /> */}
+                    <PlaylistHeader playlistCount={this.state.playlist.length} />
+                    <PlaylistStations playlistStations={this.state.playlist} />
+                </section>
+            );
+        }
+
+        return (content);
+    }
+
+    render() {
         return (
-            <section className="playlist">
-                {/* <StationImage /> */}
-                <PlaylistHeader playlistCount={playlist.length} />
-                <PlaylistStations playlistStations={playlist} />
-            </section>
+            <React.Fragment>
+                {this.showPlaylist()}
+            </React.Fragment>
         );
     }
 }
