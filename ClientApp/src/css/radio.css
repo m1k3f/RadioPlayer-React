@@ -80,13 +80,13 @@ main .stationSearch {
     position: fixed;
     top: 40vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;    
     border: 2px solid black;
-    border-radius: 6px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 40%;
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 60%;
 }
 
 main .stationSearch .searchControlsAdvanced {
@@ -96,11 +96,26 @@ main .stationSearch .searchControlsAdvanced {
     width: 100%;
 }
 
+main .stationSearch .searchControlsAdvanced .searchControls .controlItem:nth-of-type(1) {flex-grow: 1;}
+main .stationSearch .searchControlsAdvanced .searchControls .controlItem:nth-of-type(2) {flex-grow: 3;}
+main .stationSearch .searchControlsAdvanced .searchControls .controlItem:nth-of-type(3) {flex-grow: 0;}
+
 main .stationSearch .searchControlsAdvanced .searchControls {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%
+}
+
+main .stationSearch .searchControlsAdvanced .searchControls div:nth-of-type(2) {
+    text-align: center;
+}
+
+main .stationSearch .searchControlsAdvanced .searchControls input {
+    width: 80%;
+    height: 50px;
+    font-size: 20px;
 }
 
 main .stationSearch .searchControlsAdvanced .searchControls button {
@@ -108,4 +123,22 @@ main .stationSearch .searchControlsAdvanced .searchControls button {
     border: none;
     background:none;
     cursor: pointer;
+}
+
+main .stationSearch .searchControlsAdvanced .searchAdvanced {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+main .stationSearch .searchControlsAdvanced .searchAdvanced div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+main .stationSearch .searchControlsAdvanced .searchAdvanced div > * {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    width: 20%;
 }
