@@ -4,13 +4,13 @@ import MoreResultsButton from './controls/MoreResultsButton'
 
 export default class SearchResults extends Component {
 
-    renderSearchItems = () => {
+    renderSearchResults = () => {
         let content = null;
         let items = this.props.results;
         if (items !== null && items.length > 0) {
             content = items.map((item) => {
                 return (
-                    <SearchResultItem resultItem={item} />
+                    <SearchResultItem key={item.stationuuid} resultItem={item} />
                 );
             });
         }
@@ -25,7 +25,7 @@ export default class SearchResults extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.renderSearchItems()}
+                {this.renderSearchResults()}
             </React.Fragment>
         );
     }

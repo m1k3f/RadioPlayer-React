@@ -18,18 +18,24 @@ export default class StationSearch extends Component {
     }
 
     getSearchResults = async (searchCriteria) => {
-        return [];
-        // let request = new Request('api/radio/searchStations', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json;charset=utf-8'
-        //     },                    
-        //     body: JSON.stringify(searchCriteria)
-        // });
+        let request = new Request('api/radio/searchStations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },                    
+            body: JSON.stringify(searchCriteria)
+        });
 
         //send request to service
-        //let serviceResultsObject = await fetch(request).then((response) => response.json());
+        let serviceResultsObject = await fetch(request).then((response) => response.json());
 
+        if (serviceResultsObject.serviceError === null && serviceResultsObject.stationList != null &&
+            serviceResultsObject.stationList.length > 0) {
+                return serviceResultsObject.stationList;
+            }
+        else {
+            return null;
+        }
     }
 
     render() {

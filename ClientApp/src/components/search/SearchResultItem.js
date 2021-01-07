@@ -9,8 +9,11 @@ export default class SearchResultItem extends Component {
 
         return (
             <div>
-                <AddPlaylistStationButton />
-                <SearchStationLink />
+                <AddPlaylistStationButton stationItem={resultItem} />
+                {/* <SearchStationLink /> */}
+                <a href={resultItem.homepage} target="_blank" rel="noopener noreferrer">
+                    {resultItem.name}
+                </a>
             </div>
         );
     }
