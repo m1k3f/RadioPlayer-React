@@ -1,6 +1,6 @@
 ﻿* {
     box-sizing: border-box;
-    /* font-family: ; */
+    font-family: 'Segoe UI',Arial,sans-serif;
 }
 
 body {
@@ -35,6 +35,10 @@ header section button {
     padding: 4px;
 }
 
+header section input {
+    width: 80%;
+}
+
 header > a > i {
     color: black;
 }
@@ -50,6 +54,8 @@ main {
 main .stream {
     max-width: 200px;
     max-height: 200px;
+    display: flex;
+    justify-content: center;
 }
 
 main .playlist {
@@ -67,8 +73,39 @@ main .playlist .playlistHeader button {
     outline: none;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 main .stationSearch {
+    position: fixed;
+    top: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    border: 2px solid black;
+    border-radius: 6px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 40%;
+}
 
+main .stationSearch .searchControlsAdvanced {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+main .stationSearch .searchControlsAdvanced .searchControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%
+}
+
+main .stationSearch .searchControlsAdvanced .searchControls button {
+    outline: none;
+    border: none;
+    background:none;
+    cursor: pointer;
 }

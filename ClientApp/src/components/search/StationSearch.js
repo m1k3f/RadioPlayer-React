@@ -1,20 +1,39 @@
 ﻿import React, { Component } from 'react';
-import AdvancedSearchButton from './controls/AdvancedSearchButton'
+
 import SearchBar from './controls/SearchBar'
-import ClearSearchButton from './controls/ClearSearchButton'
-import AdvancedSearchBars from './AdvancedSearchBars'
 import SearchResults from './SearchResults'
 
 export default class StationSearch extends Component {
 
+    state = {
+        searchResults: null
+    }
+
+    handleSearchBarCallback = (searchCriteria) => {
+
+    }
+
+    getSearchResults = async () => {
+        let advancedSearch = this.getSearchObject();
+
+        let request = new Request('api/radio/searchStations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },                    
+            body: JSON.stringify(advancedSearch)
+        });
+
+        //send request to service
+        let serviceResultsObject = await fetch(request).then((response) => response.json());
+
+    }
+
     render() {
         return (
             <section className="stationSearch">
-                <AdvancedSearchButton />
-                <SearchBar />
-                <ClearSearchButton />
-                <AdvancedSearchBars />
-                <SearchResults />
+                <SearchBar stationSearchCallback={this.handleSearchBarCallback()} />
+                <SearchResults results={this.state.searchResults} />
             </section>
         );
     }

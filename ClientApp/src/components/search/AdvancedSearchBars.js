@@ -4,7 +4,8 @@ export default class AdvancedSearchBars extends Component {
 
     render() {
         return (
-            <div>
+            <div hidden>
+                <p>Advanced Search</p>
                 {/*
                     <SearchCountry />
                     <SearchState />

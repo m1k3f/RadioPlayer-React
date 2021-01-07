@@ -2,9 +2,19 @@
 
 export default class ClearSearchButton extends Component {
 
+    handleButtonClick = (e) => {
+
+    }
+
     render() {
+        let buttonStyle = {
+            padding: '6px'
+        };
+
         return (
-            <button />
+            <button onClick={this.handleButtonClick} style={buttonStyle}>
+                <i className="fas fa-backspace fa-lg"></i>
+            </button>
         );
     }
 }
