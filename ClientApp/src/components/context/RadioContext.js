@@ -48,6 +48,13 @@ class RadioProvider extends Component {
         });
     }
 
+    addPlaylistStation = (station) => {
+        const radioPlaylist = {...this.state.radioPlaylist};        
+        radioPlaylist.playlist.push(station);
+
+        this.saveAndRefreshPlaylist(radioPlaylist);
+    }
+
     playStation = (stationId) => {
         this.setState({
             playStationId: stationId
@@ -57,7 +64,7 @@ class RadioProvider extends Component {
     render() {
         const { children } = this.props
         const { selectedStation, radioPlaylist, playStationId } = this.state
-        const { setStation, saveAndRefreshPlaylist, playStation } = this
+        const { setStation, saveAndRefreshPlaylist, addPlaylistStation, playStation } = this
 
         return(
             <RadioContext.Provider 
@@ -67,6 +74,7 @@ class RadioProvider extends Component {
                         setStation,
                         radioPlaylist,
                         saveAndRefreshPlaylist,
+                        addPlaylistStation,
                         playStationId,
                         playStation
                     }
