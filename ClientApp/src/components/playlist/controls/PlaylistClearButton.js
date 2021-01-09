@@ -8,7 +8,7 @@ export default class PlaylistClearButton extends Component {
 
     render() {
         return (
-            <button onClick={this.handleButtonClick}>
+            <button onClick={this.handleButtonClick} className="iconButton">
                 <i className="fas fa-trash"></i>
             </button>
         );

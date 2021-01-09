@@ -68,6 +68,7 @@ main .stream {
 main .playlist {
     display: flex;
     flex-direction: column;
+    width: 40vw;
 }
 
 main .playlist .playlistHeader {
@@ -76,12 +77,24 @@ main .playlist .playlistHeader {
     justify-content: space-between;
 }
 
-main .playlist .playlistHeader button {
-    outline: none;
-    border: none;
-    background: none;
-    cursor: pointer;
+main .playlist .playlistStations {
+    
 }
+
+main .playlist .playlistStations .playlistStationItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .playlist .playlistStations .playlistStationItem > * {
+    font-size: 13px;
+}
+
+/* main .playlist .playlistStations .playlistStationItem i {
+    color: black;
+} */
 
 main .stationSearch {
     position: fixed;

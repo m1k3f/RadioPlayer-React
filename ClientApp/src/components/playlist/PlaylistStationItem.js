@@ -7,10 +7,16 @@ export default class PlaylistStationItem extends Component {
 
     render() {
         return (
-            <div>
-                <StationHomepageLink />
-                <StationTitle />
-                <DeleteStationButton />
+            <div className="playlistStationItem">                
+                {/* <StationTitle /> */}
+                <p>{this.props.station.name}</p>
+                <div>
+                    {/* <StationHomepageLink /> */}
+                    <a href={this.props.station.homepage}>
+                        <i className="fas fa-home" style={{color: 'black'}}></i>
+                    </a>
+                    <DeleteStationButton />
+                </div>
             </div>
         );
     }
