@@ -16,7 +16,7 @@ export default class PlaylistStations extends Component {
         if (this.state.playlistStations !== null && this.state.playlistStations.length > 0) {
             content = this.state.playlistStations.map((station) => {
                 return (
-                    <PlaylistStationItem station={station} />
+                    <PlaylistStationItem key={station.stationuuid} station={station} />
                 );
             });
         }

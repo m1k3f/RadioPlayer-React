@@ -12,7 +12,8 @@
 
 body {
     /* width: 90%; */
-    margin: auto;    
+    margin: auto;
+    /* overflow: scroll; */
 }
 
 header {
@@ -20,7 +21,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 10vh;
+    height: 12vh;
     background-image: linear-gradient(#e6e6e6, #f2f2f2, #ffffff);
 }
 
@@ -68,17 +69,26 @@ main .stream {
 main .playlist {
     display: flex;
     flex-direction: column;
-    width: 40vw;
+    width: 35vw;
+    /* max-height: 30vh; */
 }
 
 main .playlist .playlistHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+main .playlist .playlistHeader > * {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 main .playlist .playlistStations {
-    
+    /* overflow-y: scroll; */
 }
 
 main .playlist .playlistStations .playlistStationItem {
@@ -88,8 +98,21 @@ main .playlist .playlistStations .playlistStationItem {
     align-items: center;
 }
 
-main .playlist .playlistStations .playlistStationItem > * {
-    font-size: 13px;
+main .playlist .playlistStations .playlistStationItem:hover {
+    background-color: #f2f2f2;
+}
+
+main .playlist .playlistStations .playlistStationItem * {
+    font-size: 14px;
+}
+
+main .playlist .playlistStations .playlistStationItem p {
+    max-width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 /* main .playlist .playlistStations .playlistStationItem i {
@@ -103,7 +126,7 @@ main .stationSearch {
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    
+    z-index: 100;
     min-width: 60%;
 }
 
