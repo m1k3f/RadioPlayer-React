@@ -3,9 +3,16 @@
     font-family: 'Segoe UI',Arial,sans-serif;
 }
 
+.iconButton {
+    outline: none;
+    border: none;
+    background:none;
+    cursor: pointer;
+}
+
 body {
     /* width: 90%; */
-    margin: auto;
+    margin: auto;    
 }
 
 header {
@@ -96,6 +103,8 @@ main .stationSearch .searchControlsAdvanced {
     border-radius: 8px;
     padding-top: 15px;
     padding-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 main .stationSearch .searchControlsAdvanced .searchControls .controlItem:nth-of-type(1) {flex-grow: 1;}
@@ -115,9 +124,11 @@ main .stationSearch .searchControlsAdvanced .searchControls div:nth-of-type(2) {
 }
 
 main .stationSearch .searchControlsAdvanced .searchControls input {
-    width: 80%;
+    width: 70%;
     height: 40px;
     font-size: 22px;
+    border: 0;
+    text-align: center;
 }
 
 main .stationSearch .searchControlsAdvanced .searchControls button {
@@ -143,4 +154,26 @@ main .stationSearch .searchControlsAdvanced .searchAdvanced div > * {
     margin-right: 4px;
     margin-bottom: 4px;
     width: 20%;
+}
+
+main .stationSearch .searchResults {
+    
+}
+
+main .stationSearch .searchResults .searchResultItem {
+    padding: 4px;
+}
+
+main .stationSearch .searchResults .searchResultItem button {
+
+}
+
+main .stationSearch .searchResults .searchResultItem > a {
+    font-size: 14px;
+    color: black;
+    display: inline-block;
+    width: 20vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

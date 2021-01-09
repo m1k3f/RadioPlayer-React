@@ -8,10 +8,10 @@ export default class SearchResultItem extends Component {
         let resultItem = this.props.resultItem;
 
         return (
-            <div>
+            <div className="searchResultItem">
                 <AddPlaylistStationButton stationItem={resultItem} />
                 {/* <SearchStationLink /> */}
-                <a href={resultItem.homepage} target="_blank" rel="noopener noreferrer">
+                <a href={resultItem.homepage} title={resultItem.name} target="_blank" rel="noopener noreferrer">
                     {resultItem.name}
                 </a>
             </div>
