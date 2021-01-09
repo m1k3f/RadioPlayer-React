@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 
+import RadioContext from '../../context/RadioContext';
 import AdvancedSearchButton from './AdvancedSearchButton'
 import ClearSearchButton from './ClearSearchButton'
 import AdvancedSearchBars from '../AdvancedSearchBars'
@@ -9,6 +10,8 @@ export default class SearchBar extends Component {
     state = {
         showAdvanced: false
     }
+    
+    static contextType = RadioContext;
 
     componentDidMount() {
         this.searchStationName.focus();
@@ -16,12 +19,18 @@ export default class SearchBar extends Component {
 
     handleKeyUp = async (e) => {
         if (e.key === 'Enter') {
+            const { setSearchResultsLoading } = this.context;
+            setSearchResultsLoading(true);
+
             let searchCriteria = this.getSearchCriteria();
             this.props.stationSearchCallback(searchCriteria);
         }
     }
 
     handleSearchButtonClick = async (e) => {
+        const { setSearchResultsLoading } = this.context;
+        setSearchResultsLoading(true);
+
         let searchCriteria = this.getSearchCriteria();
         this.props.stationSearchCallback(searchCriteria);
     }

@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 
+import RadioContext from '../context/RadioContext';
 import SearchBar from './controls/SearchBar'
 import SearchResults from './SearchResults'
 
@@ -9,8 +10,13 @@ export default class StationSearch extends Component {
         searchResults: null
     }
 
+    static contextType = RadioContext;
+
     handleSearchBarCallback = async (searchCriteria) => {
         let results = await this.getSearchResults(searchCriteria);
+
+        const { setSearchResultsLoading } = this.context;
+        setSearchResultsLoading(false);
 
         this.setState({
             searchResults: results
