@@ -15,12 +15,17 @@ export default class StationSearch extends Component {
     handleSearchBarCallback = async (searchCriteria) => {
         let results = await this.getSearchResults(searchCriteria);
 
-        const { setSearchResultsLoading } = this.context;
-        setSearchResultsLoading(false);
+        this.setState(
+            {
+                searchResults: results
+            },
+            () => {
+                const { setSearchResultsLoading } = this.context;
+                setSearchResultsLoading(false);
+            }
+        );
 
-        this.setState({
-            searchResults: results
-        });
+        
     }
 
     getSearchResults = async (searchCriteria) => {

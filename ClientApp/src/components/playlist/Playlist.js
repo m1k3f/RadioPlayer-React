@@ -20,26 +20,25 @@ export default class Playlist extends Component {
         });
     }
 
-    showPlaylist = () => {
-        let content = null;
-        if (this.state.playlist != null && this.state.playlist.length > 0) {
-            content = (
-                <section className="playlist">
-                    {/* <StationImage /> */}
-                    <PlaylistHeader playlistCount={this.state.playlist.length} />
-                    <PlaylistStations playlistStations={this.state.playlist} />
-                </section>
-            );
-        }
+    componentDidUpdate() {
+        const { radioPlaylist } = this.context;
+        let contextPlaylist = radioPlaylist.playlist;
 
-        return (content);
+        if (contextPlaylist.length !== this.state.playlist.length) {
+            this.setState({
+                playlist: contextPlaylist
+            });
+        }
     }
 
     render() {
+        let playlistCount = (this.state.playlist != null) ? this.state.playlist.length : 0;
+
         return (
-            <React.Fragment>
-                {this.showPlaylist()}
-            </React.Fragment>
+            <section className="playlist">
+                <PlaylistHeader playlistCount={playlistCount} />
+                <PlaylistStations playlistStations={this.state.playlist} />
+            </section>
         );
     }
 }
