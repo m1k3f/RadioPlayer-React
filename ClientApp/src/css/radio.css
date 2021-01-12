@@ -69,15 +69,16 @@ main .stream {
 main .playlist {
     display: flex;
     flex-direction: column;
-    width: 35vw;
-    /* max-height: 30vh; */
+    width: 40vw;
+    /* max-height: 30vh; */    
 }
 
 main .playlist .playlistHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    /* border: 1px solid black; */
 }
 
 main .playlist .playlistHeader > * {
@@ -89,6 +90,8 @@ main .playlist .playlistHeader > * {
 
 main .playlist .playlistStations {
     /* overflow-y: scroll; */
+    padding-right: 4px;
+    padding-left: 4px;
 }
 
 main .playlist .playlistStations .playlistStationItem {
@@ -99,7 +102,7 @@ main .playlist .playlistStations .playlistStationItem {
 }
 
 main .playlist .playlistStations .playlistStationItem:hover {
-    background-color: #f2f2f2;
+    background-color: #f0f0f0;
 }
 
 main .playlist .playlistStations .playlistStationItem * {

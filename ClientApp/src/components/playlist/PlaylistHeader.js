@@ -1,5 +1,8 @@
 ﻿import React, { Component } from 'react';
-import PlaylistClearButton from './controls/PlaylistClearButton'
+
+import PlaylistClearButton from './controls/PlaylistClearButton';
+import PlaylistImportButton from './controls/PlaylistImportButton';
+import PlaylistExportButton from './controls/PlaylistExportButton';
 
 export default class PlaylistHeader extends Component {
 
@@ -16,7 +19,11 @@ export default class PlaylistHeader extends Component {
             <div className="playlistHeader">
                 {/* <PlaylistCount /> */}
                 <p>Playlist ({this.state.playlistCount})</p>
-                <PlaylistClearButton />
+                <div>
+                    <PlaylistImportButton />
+                    <PlaylistExportButton />
+                    <PlaylistClearButton />
+                </div>
             </div>
         );
     }
