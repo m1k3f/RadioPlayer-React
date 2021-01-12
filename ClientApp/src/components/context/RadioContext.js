@@ -39,6 +39,15 @@ class RadioProvider extends Component {
         return radioPlaylist;
     }
 
+    removePlaylist = () => {
+        const radioPlaylist = {...this.state.radioPlaylist};
+
+        if (radioPlaylist.playlist.length > 0) {
+            radioPlaylist.playlist.length = 0;
+            this.saveAndRefreshPlaylist(radioPlaylist);
+        }
+    }
+
     saveAndRefreshPlaylist = (playlist) => {
         if (window.localStorage) {
             localStorage.setItem("rpPlaylist", JSON.stringify(playlist));
@@ -69,7 +78,7 @@ class RadioProvider extends Component {
         }
 
         this.saveAndRefreshPlaylist(radioPlaylist);
-    }
+    }    
 
     playStation = (stationId) => {
         this.setState({
@@ -84,9 +93,12 @@ class RadioProvider extends Component {
     }
 
     render() {
-        const { children } = this.props
-        const { selectedStation, radioPlaylist, playStationId, searchResultsLoading } = this.state
-        const { setStation, saveAndRefreshPlaylist, addPlaylistStation, removePlaylistStation, playStation, setSearchResultsLoading } = this
+        const { children } = this.props;
+        const { selectedStation, radioPlaylist, playStationId, searchResultsLoading } = this.state;
+        const { 
+                setStation, removePlaylist, saveAndRefreshPlaylist, addPlaylistStation, 
+                removePlaylistStation, playStation, setSearchResultsLoading 
+              } = this;
 
         return(
             <RadioContext.Provider 
@@ -95,6 +107,7 @@ class RadioProvider extends Component {
                         selectedStation,
                         setStation,
                         radioPlaylist,
+                        removePlaylist,
                         saveAndRefreshPlaylist,
                         addPlaylistStation,
                         removePlaylistStation,
