@@ -13,7 +13,7 @@ export default class PlaylistStationItem extends Component {
 
     render() {
         return (
-            <div className="playlistStationItem">
+            <div className="playlistStationItem fade-in">
                 <a className="iconButton" onClick={this.handleButtonClick}>
                     <p title={this.props.station.name}>
                         <StationTypeImage station={this.props.station} />&nbsp;&nbsp;

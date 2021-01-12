@@ -20,6 +20,13 @@ export default class PlaylistStations extends Component {
                 );
             });
         }
+        else {
+            content = (
+                <p className="emptyPlaylist fade-in">
+                    <i className="far fa-file fa-4x"></i>&nbsp;
+                </p>
+            );
+        }
 
         return (
             <div className="playlistStations">

@@ -94,6 +94,13 @@ main .playlist .playlistStations {
     padding-left: 4px;
 }
 
+.emptyPlaylist {
+    /* font-size: 11px;
+    font-style: italic; */
+    text-align: center;
+    color: #e6e6e6;
+}
+
 main .playlist .playlistStations .playlistStationItem {
     display: flex;
     flex-direction: row;
@@ -124,6 +131,11 @@ main .playlist .playlistStations .playlistStationItem p {
 
 main .playlist .playlistStations .playlistStationItem .stationItemControls {
     min-width: 20px;
+}
+
+main .playlist .playlistStations .playlistStationItem .stationItemControls > * {
+    padding: 4px;
+    margin-right: 4px;
 }
 
 main .stationSearch {
