@@ -106,8 +106,12 @@ main .playlist .playlistStations .playlistStationItem * {
     font-size: 14px;
 }
 
+/* main .playlist .playlistStations .playlistStationItem button {
+    min-width: 100%;
+} */
+
 main .playlist .playlistStations .playlistStationItem p {
-    max-width: 85%;
+    min-width: 85%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -115,9 +119,9 @@ main .playlist .playlistStations .playlistStationItem p {
     margin-bottom: 4px;
 }
 
-/* main .playlist .playlistStations .playlistStationItem i {
-    color: black;
-} */
+main .playlist .playlistStations .playlistStationItem .stationItemControls {
+    min-width: 20px;
+}
 
 main .stationSearch {
     position: fixed;

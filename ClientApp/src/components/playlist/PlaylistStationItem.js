@@ -7,19 +7,25 @@ import DeleteStationButton from './controls/DeleteStationButton'
 
 export default class PlaylistStationItem extends Component {
 
+    handleButtonClick = (e) => {
+
+    }
+
     render() {
         return (
             <div className="playlistStationItem">
-                <p title={this.props.station.name}>
-                    <StationTypeImage station={this.props.station} />&nbsp;&nbsp;
-                    {this.props.station.name}
-                </p>
-                <div>                    
+                <a className="iconButton" onClick={this.handleButtonClick}>
+                    <p title={this.props.station.name}>
+                        <StationTypeImage station={this.props.station} />&nbsp;&nbsp;
+                        {this.props.station.name}
+                    </p>
+                </a>
+                <div className="stationItemControls">                    
                     {/* <StationHomepageLink /> */}
                     <a href={this.props.station.homepage}>
                         <i className="fas fa-home" style={{color: 'black'}}></i>
                     </a>
-                    <DeleteStationButton />
+                    <DeleteStationButton station={this.props.station} />
                 </div>
             </div>
         );

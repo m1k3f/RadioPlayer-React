@@ -24,7 +24,7 @@ class RadioProvider extends Component {
     getPlaylistStorage = () => {
         let radioPlaylist = null;
         if (window.localStorage) {
-            radioPlaylist = localStorage.getItem('radioPlaylist');
+            radioPlaylist = localStorage.getItem('rpPlaylist');
             if (radioPlaylist === undefined || radioPlaylist === null || radioPlaylist === '') {
                 radioPlaylist = {
                     settings: {},
@@ -41,7 +41,7 @@ class RadioProvider extends Component {
 
     saveAndRefreshPlaylist = (playlist) => {
         if (window.localStorage) {
-            localStorage.setItem("radioPlaylist", JSON.stringify(playlist));
+            localStorage.setItem("rpPlaylist", JSON.stringify(playlist));
         }
 
         this.setState({
@@ -52,6 +52,21 @@ class RadioProvider extends Component {
     addPlaylistStation = (station) => {
         const radioPlaylist = {...this.state.radioPlaylist};        
         radioPlaylist.playlist.push(station);
+
+        this.saveAndRefreshPlaylist(radioPlaylist);
+    }
+
+    removePlaylistStation = (removedStation) => {
+        const radioPlaylist = {...this.state.radioPlaylist};
+        let index = radioPlaylist.playlist.findIndex((station) => {
+            if (station.stationuuid === removedStation.stationuuid) {
+                return true;
+            }
+        });
+
+        if (index > -1) {
+            radioPlaylist.playlist.splice(index, 1);
+        }
 
         this.saveAndRefreshPlaylist(radioPlaylist);
     }
@@ -71,7 +86,7 @@ class RadioProvider extends Component {
     render() {
         const { children } = this.props
         const { selectedStation, radioPlaylist, playStationId, searchResultsLoading } = this.state
-        const { setStation, saveAndRefreshPlaylist, addPlaylistStation, playStation, setSearchResultsLoading } = this
+        const { setStation, saveAndRefreshPlaylist, addPlaylistStation, removePlaylistStation, playStation, setSearchResultsLoading } = this
 
         return(
             <RadioContext.Provider 
@@ -82,6 +97,7 @@ class RadioProvider extends Component {
                         radioPlaylist,
                         saveAndRefreshPlaylist,
                         addPlaylistStation,
+                        removePlaylistStation,
                         playStationId,
                         playStation,
                         searchResultsLoading,
