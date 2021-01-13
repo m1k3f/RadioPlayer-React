@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 
+import RadioContext from '../context/RadioContext';
 import StationTypeImage from './controls/StationTypeImage';
 import StationHomepageLink from './controls/StationHomepageLink'
 import StationTitle from './controls/StationTitle'
@@ -7,8 +8,11 @@ import DeleteStationButton from './controls/DeleteStationButton'
 
 export default class PlaylistStationItem extends Component {
 
-    handleButtonClick = (e) => {
+    static contextType = RadioContext;
 
+    handleButtonClick = (e) => {
+        const { setStation } = this.context;
+        setStation(this.props.station, true, true);
     }
 
     render() {

@@ -8,16 +8,22 @@ class RadioProvider extends Component {
     constructor() {
         super();
         this.state = {
-            selectedStation: null,
+            selectedStation: {
+                play: false,
+                station: null
+            },
             radioPlaylist: this.getPlaylistStorage(),
-            playStationId: null,
             searchResultsLoading: false
         };
     }
 
-    setStation = (station) => {
+    setStation = (station, playStation, firstPlay) => {
         this.setState({
-            selectedStation: station
+            selectedStation: {
+                play: playStation,
+                firstPlay: firstPlay,
+                station: station
+            }
         });
     }
 
@@ -80,12 +86,6 @@ class RadioProvider extends Component {
         this.saveAndRefreshPlaylist(radioPlaylist);
     }    
 
-    playStation = (stationId) => {
-        this.setState({
-            playStationId: stationId
-        });
-    }
-
     setSearchResultsLoading = (isLoading) => {
         this.setState({
             searchResultsLoading: isLoading
@@ -94,10 +94,10 @@ class RadioProvider extends Component {
 
     render() {
         const { children } = this.props;
-        const { selectedStation, radioPlaylist, playStationId, searchResultsLoading } = this.state;
+        const { selectedStation, radioPlaylist, searchResultsLoading } = this.state;
         const { 
                 setStation, removePlaylist, saveAndRefreshPlaylist, addPlaylistStation, 
-                removePlaylistStation, playStation, setSearchResultsLoading 
+                removePlaylistStation, setSearchResultsLoading 
               } = this;
 
         return(
@@ -111,8 +111,6 @@ class RadioProvider extends Component {
                         saveAndRefreshPlaylist,
                         addPlaylistStation,
                         removePlaylistStation,
-                        playStationId,
-                        playStation,
                         searchResultsLoading,
                         setSearchResultsLoading
                     }
