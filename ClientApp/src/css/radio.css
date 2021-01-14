@@ -37,7 +37,7 @@ header section button {
     border: none;
     background:none;
     cursor: pointer;
-    color: #0088cc;
+    color: #4682b4;
     text-align: center;
     font-size: 30px;
     padding: 4px;
@@ -77,8 +77,7 @@ main .playlist .playlistHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 8px;
-    /* border: 1px solid black; */
+    margin-bottom: 8px;    
 }
 
 main .playlist .playlistHeader > * {
@@ -92,6 +91,10 @@ main .playlist .playlistStations {
     /* overflow-y: scroll; */
     padding-right: 4px;
     padding-left: 4px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    overflow-y: auto;
+    max-height: 20vh;
 }
 
 .emptyPlaylist {
@@ -109,7 +112,7 @@ main .playlist .playlistStations .playlistStationItem {
 }
 
 main .playlist .playlistStations .playlistStationItem:hover {
-    background-color: #f0f0f0;
+    background-color: #dae6f0;
 }
 
 main .playlist .playlistStations .playlistStationItem * {
