@@ -13,22 +13,29 @@ export default class Stream extends Component {
     componentDidUpdate() {
         const { selectedStation } = this.context;
         
-        if (selectedStation.play && selectedStation.station !== null && 
-                this.streamer.src.length === 0 && this.streamer.paused) {
-            //station selected, video has src, src not playing => play src
+        if (selectedStation.play && selectedStation.station !== null) {
+            //station selected, src not playing => play src
+            if (!this.streamer.paused) {
+                this.pauseStream();
+            }
+
             this.streamer.setAttribute('src', selectedStation.station.url_resolved);
             this.streamer.play();
         }
         else if (!selectedStation.play && selectedStation.station !== null && 
-                this.streamer.src.length > 0 && !this.streamer.paused) {
-            //station not selected (paused), video has src, src is playing => stop src
-            this.streamer.pause();
-            this.streamer.removeAttribute('src');            
+                !this.streamer.paused) {
+            //station not selected (paused), src is playing => stop src
+            this.pauseStream();           
         }
     }
 
+    pauseStream = () => {
+        this.streamer.pause();
+        this.streamer.removeAttribute('src'); 
+    }
+
     handlePlay = (e) => {
-        
+        this.streamer.volume = '0.2';
     }
 
     render() {        
@@ -45,7 +52,8 @@ export default class Stream extends Component {
 
         return(
             <section className="stream" style={streamStyle}>
-                <video ref={el => this.streamer = el} onPlay={this.handlePlay} />
+                <video ref={el => this.streamer = el} 
+                        onPlay={this.handlePlay} />
             </section>
         );
     }
