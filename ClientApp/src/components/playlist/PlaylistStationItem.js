@@ -16,8 +16,15 @@ export default class PlaylistStationItem extends Component {
     }
 
     render() {
+        let selectedStyle = {};
+        if (this.props.selected) {
+            selectedStyle = {
+                backgroundColor: "#dae6f0"
+            }
+        }
+
         return (
-            <div className="playlistStationItem fade-in">
+            <div className="playlistStationItem fade-in" style={selectedStyle}>
                 <a className="iconButton" onClick={this.handleButtonClick}>
                     <p title={this.props.station.name}>
                         <StationTypeImage station={this.props.station} />&nbsp;&nbsp;

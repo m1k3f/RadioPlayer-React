@@ -5,7 +5,7 @@ import RadioContext from '../../context/RadioContext';
 export default class PlayButton extends Component {
 
     state = {
-        playStation: false
+        showPlayButton: false
     }
 
     static contextType = RadioContext;
@@ -17,36 +17,36 @@ export default class PlayButton extends Component {
     componentDidUpdate() {
         const { selectedStation, setStation } = this.context;
 
-        if (!this.state.playStation && selectedStation.play && selectedStation.firstPlay) {
+        if (!this.state.showPlayButton && selectedStation.play && selectedStation.firstPlay) {
             //station needs to play and it is first play
             this.setState({
-                playStation: true
+                showPlayButton: true
             });
         }
     }
 
     handleButtonClick = (e) => {
         const { selectedStation, setStation } = this.context;
-        if (this.state.playStation) {  
+        if (this.state.showPlayButton) {  
             setStation(selectedStation.station, false, false);
             
             this.setState({
-                playStation: false
+                showPlayButton: false
             });            
         }
         else {
             setStation(selectedStation.station, true, false);
 
             this.setState({
-                playStation: true
+                showPlayButton: true
             });            
         }
     }
 
     render() {
         let buttonImage = <i className="fas fa-play-circle fa-lg"></i>;
-        if (this.state.playStation) {
-            buttonImage = <i className="fas fa-pause-circle fa-lg"></i>;
+        if (this.state.showPlayButton) {
+            buttonImage = <i className="fas fa-stop-circle fa-lg"></i>;
         }
 
         return (

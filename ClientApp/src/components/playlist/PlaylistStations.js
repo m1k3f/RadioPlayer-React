@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+
+import RadioContext from '../context/RadioContext';
 import PlaylistStationItem from './PlaylistStationItem'
 
 export default class PlaylistStations extends Component {
@@ -6,6 +8,8 @@ export default class PlaylistStations extends Component {
     state = {
         playlistStations: null
     }
+
+    static contextType = RadioContext;
 
     static getDerivedStateFromProps(props, state) {
         return {playlistStations: props.playlistStations};
@@ -15,8 +19,17 @@ export default class PlaylistStations extends Component {
         let content = null;
         if (this.state.playlistStations !== null && this.state.playlistStations.length > 0) {
             content = this.state.playlistStations.map((station) => {
+                const { selectedStation } = this.context;
+                let stationSelected = false;
+                if (selectedStation.station != null && 
+                    station.stationuuid === selectedStation.station.stationuuid) {
+                        stationSelected = true;
+                    }
+
                 return (
-                    <PlaylistStationItem key={station.stationuuid} station={station} />
+                    <PlaylistStationItem key={station.stationuuid} 
+                                            station={station}
+                                            selected={stationSelected} />
                 );
             });
         }
