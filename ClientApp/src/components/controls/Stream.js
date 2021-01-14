@@ -14,19 +14,26 @@ export default class Stream extends Component {
         const { selectedStation } = this.context;
         
         if (selectedStation.play && selectedStation.station !== null) {
-            //station selected, src not playing => play src
-            if (!this.streamer.paused) {
-                this.pauseStream();
+            //station selected, src not playing => play src            
+            if (this.streamer.src.length === 0 || 
+                (this.streamer.src.length > 0 && this.streamer.src !== selectedStation.station.url_resolved)) {
+                this.playStream(selectedStation.station.url_resolved);
             }
-
-            this.streamer.setAttribute('src', selectedStation.station.url_resolved);
-            this.streamer.play();
         }
         else if (!selectedStation.play && selectedStation.station !== null && 
                 !this.streamer.paused) {
             //station not selected (paused), src is playing => stop src
             this.pauseStream();           
         }
+    }
+
+    playStream = (stationUrl) => {
+        if (!this.streamer.paused) {
+            this.pauseStream();
+        }
+
+        this.streamer.setAttribute('src', stationUrl);
+        this.streamer.play();
     }
 
     pauseStream = () => {
