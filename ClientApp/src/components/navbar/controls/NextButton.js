@@ -9,7 +9,7 @@ export default class NextButton extends Component {
     render() {
         return (
             <button onClick={this.handleButtonClick}>
-                <i className="fas fa-chevron-circle-right fa-lg"></i>
+                <i className="fas fa-step-forward"></i>
             </button>
         );
     }
