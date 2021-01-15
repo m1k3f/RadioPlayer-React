@@ -35,6 +35,16 @@ export default class SearchBar extends Component {
         this.props.stationSearchCallback(searchCriteria);
     }
 
+    handleClearButtonClick = (e) => {
+        this.searchStationName.value = '';
+        this.searchCountry.value = '';
+        this.searchState.value = '';
+        this.searchLanguage.value = '';
+        this.searchTagList.value = '';
+        this.searchCodec.value = '';
+        this.searchBitrate.value = '';
+    }
+
     handleExpandButtonClick = (e) => {
         if (this.state.showAdvanced) {
             this.setState({
@@ -127,10 +137,12 @@ export default class SearchBar extends Component {
                         <input ref={el => this.searchStationName = el} 
                             type="text" 
                             placeholder="Search by Station..."
-                            onKeyUp={this.handleKeyUp} />
-                        {/* <ClearSearchButton /> */}
+                            onKeyUp={this.handleKeyUp} />                        
                         <button onClick={this.handleSearchButtonClick}>
                             <i className="fas fa-search fa-lg"></i>
+                        </button>
+                        <button onClick={this.handleClearButtonClick}>
+                            <i className="fas fa-backspace fa-lg"></i>
                         </button>
                     </div>
                     {/* <AdvancedSearchButton /> */}
