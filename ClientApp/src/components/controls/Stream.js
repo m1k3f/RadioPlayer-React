@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Hls from 'hls.js';
 
 import RadioContext from '../context/RadioContext';
 
@@ -17,7 +18,7 @@ export default class Stream extends Component {
             //station selected, src not playing => play src            
             if (this.streamer.src.length === 0 || 
                 (this.streamer.src.length > 0 && this.streamer.src !== selectedStation.station.url_resolved)) {
-                this.playStream(selectedStation.station.url_resolved);
+                this.playStream(selectedStation.station);
             }
         }
         else if (!selectedStation.play && selectedStation.station !== null && 
@@ -27,13 +28,39 @@ export default class Stream extends Component {
         }
     }
 
-    playStream = (stationUrl) => {
+    playStream = (station) => {
         if (!this.streamer.paused) {
             this.pauseStream();
         }
+        
+        if (!station.hls) {
+            this.playBasicStream(station.url_resolved);
+        }
+        else if (station.hls && Hls.isSupported()) {
+            this.playHlsStream(station.url_resolved);
+        }        
+    }
 
+    playBasicStream = (stationUrl) => {
         this.streamer.setAttribute('src', stationUrl);
         this.streamer.play();
+    }
+
+    playHlsStream = (stationUrl) => {
+        let hlsJs = new Hls();
+
+        hlsJs.on(Hls.Events.ERROR, (event, data) => {
+            hlsJs.stopLoad();
+            hlsJs.destroy();
+            hlsJs = undefined;
+        });
+
+        hlsJs.on(Hls.Events.MANIFEST_PARSED, () => {
+            this.streamer.play();
+        });
+
+        hlsJs.loadSource(stationUrl);
+        hlsJs.attachMedia(this.streamer);
     }
 
     pauseStream = () => {
