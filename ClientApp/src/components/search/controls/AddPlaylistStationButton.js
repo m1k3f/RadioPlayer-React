@@ -14,7 +14,7 @@ export default class AddPlaylistStationButton extends Component {
     render() {
         return (
             <button onClick={this.handleButtonClick} className="iconButton">
-                <i className="fas fa-plus-circle fa-lg"></i>
+                <i className="fas fa-plus-circle fa-2x"></i>
             </button>
         );
     }

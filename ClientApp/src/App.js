@@ -9,7 +9,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <div className="fade-in">        
+      <div className="radioApp fade-in">        
         <Radio />        
       </div>
     );
