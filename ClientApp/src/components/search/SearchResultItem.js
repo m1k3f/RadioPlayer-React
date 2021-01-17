@@ -12,6 +12,7 @@ export default class SearchResultItem extends Component {
     render() {
         let resultItem = this.props.resultItem;
         let bitrate = (resultItem.bitrate > 0) ? `${resultItem.bitrate}kbps` : '';
+        let state = (resultItem.state.length > 0) ? `${resultItem.state} - ` : '';
 
         return (
             <div className="searchResultItem">
@@ -20,9 +21,9 @@ export default class SearchResultItem extends Component {
                     {/* <SearchStationLink /> */}                    
                     <a href={resultItem.homepage} title={resultItem.name} target="_blank" rel="noopener noreferrer">
                         {resultItem.name}
-                    </a>                    
-                    <p>{resultItem.codec} {bitrate}</p>
-                    <p>{resultItem.state} {resultItem.countrycode}</p>
+                    </a>
+                    <p>{state}{resultItem.country}</p>
+                    <p>{resultItem.codec} {bitrate}</p>                    
                 </div>
             </div>
         );

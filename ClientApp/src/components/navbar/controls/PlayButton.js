@@ -46,7 +46,7 @@ export default class PlayButton extends Component {
     render() {
         let buttonImage = <i className="fas fa-play-circle fa-lg"></i>;
         if (this.state.showPlayButton) {
-            buttonImage = <i className="fas fa-stop-circle fa-lg"></i>;
+            buttonImage = <i className="fas fa-pause-circle fa-lg"></i>;
         }
 
         return (

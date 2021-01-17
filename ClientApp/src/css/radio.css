@@ -96,7 +96,7 @@ main .playlist .playlistStations {
     /* overflow-y: scroll; */
     padding-right: 4px;
     padding-left: 4px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #e6e6e6;
     border-radius: 6px;
     overflow-y: auto;
     max-height: 20vh;
