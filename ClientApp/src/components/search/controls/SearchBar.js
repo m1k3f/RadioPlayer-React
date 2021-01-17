@@ -19,20 +19,42 @@ export default class SearchBar extends Component {
 
     handleKeyUp = async (e) => {
         if (e.key === 'Enter') {
-            const { setSearchResultsLoading } = this.context;
-            setSearchResultsLoading(true);
-
-            let searchCriteria = this.getSearchCriteria();
-            this.props.stationSearchCallback(searchCriteria);
+            let searchFields = this.getSearchFields();
+            this.props.stationSearchCallback(searchFields);
         }
     }
 
     handleSearchButtonClick = async (e) => {
-        const { setSearchResultsLoading } = this.context;
-        setSearchResultsLoading(true);
+        let searchFields = this.getSearchFields();
+        this.props.stationSearchCallback(searchFields);
+    }
 
-        let searchCriteria = this.getSearchCriteria();
-        this.props.stationSearchCallback(searchCriteria);
+    getSearchFields = () => {
+        let searchFields = {};
+        if (this.state.showAdvanced) {
+            searchFields = {
+                stationName: this.searchStationName.value,
+                country: this.searchCountry.value,
+                state: this.searchState.value,
+                language: this.searchLanguage.value,
+                tagList: this.searchTagList.value,
+                codec: this.searchCodec.value,
+                bitrate: this.searchBitrate.value
+            };
+        }
+        else {
+            searchFields = {
+                stationName: this.searchStationName.value,
+                country: '',
+                state: '',
+                language: '',
+                tagList: '',
+                codec: '',
+                bitrate: ''
+            }
+        }
+
+        return searchFields;
     }
 
     handleClearButtonClick = (e) => {
@@ -56,45 +78,7 @@ export default class SearchBar extends Component {
                 showAdvanced: true
             });
         }
-    }
-
-    getSearchCriteria = () => {
-        let searchCriteria = {};
-        searchCriteria.offset = 0;
-        searchCriteria.limit = 10;
-        searchCriteria.order = 'votes';
-        searchCriteria.reverse = true;
-        if (this.searchStationName.value.length > 0) {
-            searchCriteria.name = this.searchStationName.value;
-        }
-
-        if (this.state.showAdvanced) {
-            if (this.searchCountry.value.length > 0) {
-                searchCriteria.country = this.searchCountry.value;
-            }
-            if (this.searchState.value.length > 0) {
-                searchCriteria.state = this.searchState.value;
-            }
-            if (this.searchLanguage.value.length > 0) {
-                searchCriteria.language = this.searchLanguage.value;
-            }
-            if (this.searchTagList.value.length > 0) {
-                let tagArray = this.searchTagList.value.replace(",", "").split(" ");
-                searchCriteria.tagList = tagArray.join(",");
-            }
-            if (this.searchCodec.value.length > 0) {
-                searchCriteria.codec = this.searchCodec.value;
-            }
-            if (this.searchBitrate.value.length > 0) {
-                if (!isNaN(this.searchBitrate.value)) {
-                    searchCriteria.bitrateMin = parseInt(this.searchBitrate.value);
-                    searchCriteria.bitrateMax = parseInt(this.searchBitrate.value);
-                }            
-            }
-        }
-
-        return searchCriteria;
-    }
+    }    
 
     renderAdvanced = () => {
         let content = null;

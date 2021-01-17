@@ -256,7 +256,7 @@ main .stationSearch .searchResults .searchResultItem .searchResultItemDescriptio
 }
 
 main .stationSearch .searchResults .searchResultItem .searchResultItemDescription p {
-    font-size: 10px;
+    font-size: 11px;
     text-align: left;
     margin: 0;
 }
