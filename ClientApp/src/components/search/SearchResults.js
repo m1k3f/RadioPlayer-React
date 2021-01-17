@@ -16,6 +16,10 @@ export default class SearchResults extends Component {
         return {searchResults: props.results};
     }
 
+    handleMoreResultsCallback = () => {
+        this.props.stationSearchCallback();
+    }
+
     renderSearchResultsDiv = () => {
         const { searchResultsLoading } = this.context;
         if (searchResultsLoading) {
@@ -28,19 +32,44 @@ export default class SearchResults extends Component {
 
     renderResults = () => {
         let content = null;
-        if (this.state.searchResults !== null && this.state.searchResults.length > 0) {
-            content = this.state.searchResults.map((item) => {
+        let { searchResults } = this.state;
+        if (searchResults != null && searchResults.results !== null && searchResults.results.length > 0) {            
+            let itemCount = 0;
+            content = searchResults.results.map((item) => {
+                itemCount++;
+                let limitReached = false;
+                if (itemCount === searchResults.limit || 
+                    (itemCount > searchResults.limit && itemCount % searchResults.limit === 0)) {
+                    limitReached = true;
+                }
+
                 return (
-                    <SearchResultItem key={item.stationuuid} resultItem={item} />
+                    <SearchResultItem key={itemCount} resultItem={item} limitReached={limitReached} />
                 );
+                
             });
         }
 
         return (
             <div className="searchResults">
                 {content}
+                {this.renderMoreResultsButton(content)}
             </div>
         );
+    }
+
+    renderMoreResultsButton = (content) => {
+        let moreResults = null;
+        if (content != null && 
+            (content.length === this.state.searchResults.limit || 
+            (content.length > this.state.searchResults.limit &&
+            content.length % this.state.searchResults.limit === 0))) {
+            moreResults = (
+                <MoreResultsButton searchResultsCallback={this.handleMoreResultsCallback} />
+            );
+        }
+
+        return moreResults;
     }
 
     renderSpinner = () => {

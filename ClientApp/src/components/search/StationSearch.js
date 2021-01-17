@@ -7,21 +7,35 @@ import SearchResults from './SearchResults'
 export default class StationSearch extends Component {
 
     state = {
-        searchResults: null
+        searchResults: {
+            offset: 0,
+            limit: 10,
+            results: null
+        }
     }
 
     static contextType = RadioContext;
+
+    searchFields = null;
 
     handleSearchBarCallback = async (searchFields) => {
         const { setSearchResultsLoading } = this.context;
         setSearchResultsLoading(true);
 
-        let searchCriteria = this.getSearchCriteria(searchFields);
-        let results = await this.getSearchResults(searchCriteria);
+        this.searchFields = searchFields;
 
+        let offset = 0;
+        let limit = 10;
+        let searchCriteria = this.getSearchCriteria(searchFields, offset, limit);
+        let results = await this.getSearchResults(searchCriteria);
+        
         this.setState(
             {
-                searchResults: results
+                searchResults: {
+                    offset: offset,
+                    limit: limit,
+                    results: results
+                }
             },
             () => {
                 const { setSearchResultsLoading } = this.context;
@@ -30,10 +44,27 @@ export default class StationSearch extends Component {
         );        
     }
 
-    getSearchCriteria = (searchFields) => {
+    handleSearchResultsCallback = async () => {
+        let newOffset = this.state.searchResults.offset + this.state.searchResults.limit;
+        let limit = this.state.searchResults.limit;
+        let searchCriteria = this.getSearchCriteria(this.searchFields, newOffset, limit);
+        let newResultSet = await this.getSearchResults(searchCriteria);
+
+        let newResults = this.state.searchResults.results.concat(newResultSet);
+
+        this.setState({
+            searchResults: {
+                offset: newOffset,
+                limit: limit,
+                results: newResults
+            }
+        })
+    }
+
+    getSearchCriteria = (searchFields, offset, limit) => {
         let searchCriteria = {};
-        searchCriteria.offset = 0;
-        searchCriteria.limit = 10;
+        searchCriteria.offset = offset;
+        searchCriteria.limit = limit;
         searchCriteria.order = 'votes';
         searchCriteria.reverse = true;
         if (searchFields.stationName.length > 0) {
@@ -90,7 +121,8 @@ export default class StationSearch extends Component {
         return (
             <section className="stationSearch">
                 <SearchBar stationSearchCallback={this.handleSearchBarCallback} />
-                <SearchResults results={this.state.searchResults} />
+                <SearchResults results={this.state.searchResults}
+                                stationSearchCallback={this.handleSearchResultsCallback} />
             </section>
         );
     }
