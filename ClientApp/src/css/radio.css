@@ -29,11 +29,21 @@ header {
     background-image: linear-gradient(#e6e6e6, #f2f2f2, #ffffff);
 }
 
-header section {
+header section .headerControls {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 4px;
+}
+
+header section .stationImage {
+    float: left;
+    width: 50px;
+    height: 50px;
+    /* margin-right: 10px; */
+    border: 1px solid #e6e6e6;
+    margin-top: 4px;
 }
 
 header section button {

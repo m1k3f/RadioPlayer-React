@@ -58,7 +58,7 @@ namespace RadioPlayer.Controllers
         }
 
         [HttpPost]
-        [ActionName("GetImageData")]
+        [ActionName("GetStationImage")]
         public async Task<StationImage> GetStationImage([FromBody]StationImage stationImage)
         {
             try
