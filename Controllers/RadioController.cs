@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,11 +17,13 @@ namespace RadioPlayer.Controllers
     {
         private readonly ILogger<RadioController> _logger;
         private RadioBrowserAccess _radioBrowser;
+        private IHttpClientFactory _clientFactory;
 
-        public RadioController(ILogger<RadioController> logger)
+        public RadioController(ILogger<RadioController> logger, IHttpClientFactory clientFactory)
         {
             _logger = logger;
             _radioBrowser = new RadioBrowserAccess();
+            _clientFactory = clientFactory;
         }
 
         [HttpPost]
@@ -63,7 +66,7 @@ namespace RadioPlayer.Controllers
         {
             try
             {
-                Util.ImageDownload imageDownload = new Util.ImageDownload();
+                Util.ImageDownload imageDownload = new Util.ImageDownload(_clientFactory);
                 return await imageDownload.GetStationImage(stationImage);
 
             }

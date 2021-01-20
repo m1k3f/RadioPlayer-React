@@ -9,17 +9,18 @@ namespace RadioPlayer.Util
 {    
     public class ImageDownload
     {
-        private HttpClient _client; 
+        private IHttpClientFactory _clientFactory; 
         private string _imageContentType {get; set;}
         private byte[] _imageDataBytes {get; set;}
-        public ImageDownload()
+        public ImageDownload(IHttpClientFactory clientFactory)
         {
-            _client = new HttpClient();
+            _clientFactory = clientFactory;
         }        
 
         public async Task<Models.StationImage> GetStationImage(Models.StationImage stationImage)
         {
-            HttpResponseMessage response = await _client.GetAsync(stationImage.ImageUrl);            
+            var client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.GetAsync(stationImage.ImageUrl);            
             if (response.IsSuccessStatusCode)
             {
                 stationImage.ImageFileType = response.Content.Headers.ContentType.MediaType;
