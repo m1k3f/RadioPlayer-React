@@ -15,7 +15,7 @@ export default class PlayButton extends Component {
     }
 
     componentDidUpdate() {
-        const { selectedStation, setStation } = this.context;
+        const { selectedStation } = this.context;
 
         if (!this.state.showPlayButton && selectedStation.play && selectedStation.firstPlay) {
             //station needs to play and it is first play
