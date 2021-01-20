@@ -54,7 +54,7 @@ export default class StationImage extends Component {
         let content = null;
         if (this.state.imageSrc != null && this.state.imageSrc.length > 0) {
             content = (
-                <img className="stationImage" src={this.state.imageSrc} alt="Station Image"></img>
+                <img className="stationImage" src={this.state.imageSrc} alt=""></img>
             );
         }
 

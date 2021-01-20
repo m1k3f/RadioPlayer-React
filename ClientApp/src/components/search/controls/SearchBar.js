@@ -59,12 +59,14 @@ export default class SearchBar extends Component {
 
     handleClearButtonClick = (e) => {
         this.searchStationName.value = '';
-        this.searchCountry.value = '';
-        this.searchState.value = '';
-        this.searchLanguage.value = '';
-        this.searchTagList.value = '';
-        this.searchCodec.value = '';
-        this.searchBitrate.value = '';
+        if (this.state.showAdvanced) {
+            this.searchCountry.value = '';
+            this.searchState.value = '';
+            this.searchLanguage.value = '';
+            this.searchTagList.value = '';
+            this.searchCodec.value = '';
+            this.searchBitrate.value = '';
+        }
     }
 
     handleExpandButtonClick = (e) => {
