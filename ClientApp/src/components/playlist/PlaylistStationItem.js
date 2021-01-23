@@ -25,15 +25,13 @@ export default class PlaylistStationItem extends Component {
 
         return (
             <div className="playlistStationItem fade-in" style={selectedStyle}>
-                <a className="iconButton" onClick={this.handleButtonClick}>
-                    <p title={this.props.station.name}>
-                        <StationTypeImage station={this.props.station} />&nbsp;&nbsp;
-                        {this.props.station.name}
-                    </p>
-                </a>
+                <p title={this.props.station.name} onClick={this.handleButtonClick}>
+                    <StationTypeImage station={this.props.station} />&nbsp;&nbsp;
+                    {this.props.station.name}
+                </p>
                 <div className="stationItemControls">                    
                     {/* <StationHomepageLink /> */}
-                    <a href={this.props.station.homepage}>
+                    <a href={this.props.station.homepage} target="_blank" rel="noopener noreferrer">
                         <i className="fas fa-home" style={{color: 'black'}}></i>
                     </a>
                     <DeleteStationButton station={this.props.station} />

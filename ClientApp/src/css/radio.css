@@ -87,7 +87,7 @@ main .stream {
 main .playlist {
     display: flex;
     flex-direction: column;
-    width: 50vw;
+    width: 45vw;
     /* max-height: 30vh; */    
     margin-bottom: 10px;
 }
@@ -130,7 +130,7 @@ main .playlist .playlistStations .playlistStationItem {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: center;    
 }
 
 main .playlist .playlistStations .playlistStationItem:hover {
@@ -145,20 +145,20 @@ main .playlist .playlistStations .playlistStationItem * {
     min-width: 100%;
 } */
 
-main .playlist .playlistStations .playlistStationItem a {
-    /* min-width: 60%; */
+/* main .playlist .playlistStations .playlistStationItem a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
+} */
 
 main .playlist .playlistStations .playlistStationItem p {
-    /* min-width: 85%;
+    min-width: 85%;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; */
+    text-overflow: ellipsis;
     margin-top: 4px;
     margin-bottom: 4px;
+    cursor: pointer;
 }
 
 main .playlist .playlistStations .playlistStationItem .stationItemControls {
