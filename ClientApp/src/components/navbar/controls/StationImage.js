@@ -37,7 +37,7 @@ export default class StationImage extends Component {
         else if (this.state.imageSrc !== null && selectedStation.station !== null && 
                 selectedStation.station.favicon.length > 0 && 
                 this.state.faviconSrc !== selectedStation.station.favicon) {
-                    //image set before but station was changed; change image to new station
+                    //image set before but station was changed
                     change = true;
         }
 

@@ -43,6 +43,7 @@ export default class Stream extends Component {
 
     playBasicStream = (stationUrl) => {
         this.streamer.setAttribute('src', stationUrl);
+        this.streamer.load();
         this.streamer.play();
     }
 
