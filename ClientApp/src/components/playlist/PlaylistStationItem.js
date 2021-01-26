@@ -30,10 +30,7 @@ export default class PlaylistStationItem extends Component {
                     {this.props.station.name}
                 </p>
                 <div className="stationItemControls">                    
-                    {/* <StationHomepageLink /> */}
-                    <a href={this.props.station.homepage} target="_blank" rel="noopener noreferrer">
-                        <i className="fas fa-home" style={{color: 'black'}}></i>
-                    </a>
+                    <StationHomepageLink station={this.props.station} />
                     <DeleteStationButton station={this.props.station} />
                 </div>
             </div>
