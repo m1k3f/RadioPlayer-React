@@ -121,7 +121,7 @@ main .playlist .playlistStations {
     border-radius: 6px;
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 20vh;
+    height: 20vh;
 }
 
 .emptyPlaylist {

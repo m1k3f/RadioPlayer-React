@@ -1,6 +1,5 @@
 ﻿import React, { Component } from 'react';
 import RadioContext from '../context/RadioContext';
-import StationImage from './controls/StationImage'
 import PlaylistHeader from './PlaylistHeader'
 import PlaylistStations from './PlaylistStations'
 
