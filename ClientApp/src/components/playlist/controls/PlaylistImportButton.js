@@ -27,13 +27,13 @@ export default class PlaylistImportButton extends Component {
         this.fileImport.click();
     }
 
-    handleFiles = (e) => {
+    handleFiles = async (e) => {
         this.showSpinner(true);
 
         let file = e.target.files[0];
         if (file && file.type.includes('x-scpls')) {
             //Read through file and set it to playlist
-            let fileContents = this.getFileContents(file);
+            let fileContents = await this.getFileContents(file);
             if (fileContents.length > 0) {
                 let contentArray = this.getContentArray(fileContents);
                 if (contentArray.length > 0) {
@@ -86,14 +86,18 @@ export default class PlaylistImportButton extends Component {
     }
 
     getFileContents = (file) => {
-        let fileContents = '';
-        const reader = new FileReader();
-        reader.readAsText(file);
-        reader.onload = () => {
-            fileContents = reader.result;
-        }
-
-        return fileContents;
+        return new Promise((resolve, reject) => {
+            let fileContents = '';
+            const reader = new FileReader();        
+            reader.onload = (e) => {
+                fileContents = e.target.result;
+                resolve(fileContents);
+            }
+            reader.onerror = (e) => {
+                reject(e);
+            }
+            reader.readAsText(file);
+        });        
     }
 
     getContentArray = (contentString) => {
