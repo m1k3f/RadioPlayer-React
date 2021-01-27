@@ -80,9 +80,6 @@ export default class PlaylistImportButton extends Component {
         });
         
         setPlaylist(playlist);
-
-        //set playlist
-        // on station play, if no station id => search by name and match results by url, save to storage
     }
 
     getFileContents = (file) => {
@@ -107,14 +104,18 @@ export default class PlaylistImportButton extends Component {
 
         let contentArray = [];
         fileArray.forEach(item => {
-            let fileSplit = item.split('=');
-            if (fileSplit.length > 1) {
-                let count = parseInt(fileSplit[0].replace('File', ''));
+            let separatorIndex = item.indexOf('=');
+            let itemName = item.substring(0, separatorIndex);
+            let itemValue = item.substring(separatorIndex+1);
+
+            if (itemValue.length > 0) {
+                let count = parseInt(itemName.replace('File', ''));
                 let titleArrayItem = titleArray.filter(t => t.startsWith(`Title${count}`));
-                let titleValue = (titleArrayItem.length > 0) ? titleArrayItem[0].split('=')[1] : '';
+                let titleSeparatorIndex = (titleArrayItem.length > 0) ? titleArrayItem[0].indexOf('=') : -1;
+                let titleValue = (titleSeparatorIndex > -1) ? titleArrayItem[0].substring(titleSeparatorIndex+1) : '';
 
                 contentArray.push({
-                    file: fileSplit[1],
+                    file: itemValue,
                     title: titleValue
                 });
             }
