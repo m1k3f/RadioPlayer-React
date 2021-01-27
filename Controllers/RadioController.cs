@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -47,6 +48,26 @@ namespace RadioPlayer.Controllers
         }
 
         [HttpPost]
+        [ActionName("SearchStationByUrl")]
+        public async Task<Stations> SearchStationByUrl([FromBody]BasicSearch searchCriteria) 
+        {
+            Stations stations = new Stations();
+            try
+            {
+                stations.StationList = await _radioBrowser.GetStationByUrl(searchCriteria);
+            }
+            catch(Exception ex)
+            {
+                stations.StationList = null;
+                stations.ServiceError = new ServiceError();
+                stations.ServiceError.ErrorMessage = ex.Message;
+                stations.ServiceError.StackTrace = ex.StackTrace;
+            }
+
+            return stations;
+        }
+
+        [HttpPost]
         [ActionName("CountStation")]
         public void CountStation([FromBody]string stationId)
         {
@@ -79,6 +100,19 @@ namespace RadioPlayer.Controllers
                 stationImage.ServiceError.StackTrace = ex.StackTrace;
                 return stationImage;
             }
+        }
+
+        [HttpPost]
+        [ActionName("DownloadPlaylistFile")]
+        public FileStreamResult DownloadPlaylistFile(Stations stations)
+        {
+            var playlistFileBytes = RadioPlayer.Util.FileDownload.GetPlaylistFileBytes(stations.StationList);
+            var dataStream = new MemoryStream(playlistFileBytes);
+            string mimeType = "audio/x-scpls";
+            return new FileStreamResult(dataStream, mimeType)
+            {
+                FileDownloadName = "playlist.pls"
+            };
         }
     }
 }

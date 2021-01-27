@@ -78,6 +78,20 @@ class RadioProvider extends Component {
         this.saveAndRefreshPlaylist(radioPlaylist);
     }
 
+    updatePlaylistStation = (oldStationObject, newStationObject) => {
+        const radioPlaylist = {...this.state.radioPlaylist};
+        let index = radioPlaylist.playlist.findIndex((station) => {
+            if (station.stationuuid === oldStationObject.stationuuid) {
+                return true;
+            }
+        });
+
+        if (index > -1) {
+            radioPlaylist.playlist[index] = newStationObject;
+            this.saveAndRefreshPlaylist(radioPlaylist);
+        }        
+    }
+
     removePlaylistStation = (removedStation) => {
         const radioPlaylist = {...this.state.radioPlaylist};
         let index = radioPlaylist.playlist.findIndex((station) => {
@@ -104,7 +118,7 @@ class RadioProvider extends Component {
         const { selectedStation, radioPlaylist, searchResultsLoading } = this.state;
         const { 
                 setStation, removePlaylist, setPlaylist, addPlaylistStation, 
-                removePlaylistStation, setSearchResultsLoading 
+                updatePlaylistStation, removePlaylistStation, setSearchResultsLoading 
               } = this;
 
         return(
@@ -117,6 +131,7 @@ class RadioProvider extends Component {
                         removePlaylist,
                         setPlaylist,
                         addPlaylistStation,
+                        updatePlaylistStation,
                         removePlaylistStation,
                         searchResultsLoading,
                         setSearchResultsLoading

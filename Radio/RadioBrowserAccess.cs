@@ -37,7 +37,24 @@ namespace RadioPlayer.Radio
             var apiResponseContent = await GetApiPostResponseContent(searchUrl, searchCriteriaJson);
 
             var deserializedStations = JsonSerializer.Deserialize<IEnumerable<Station>>(apiResponseContent, GetDeserializeOptions());
-            //var updatedStationList = await PopulateStationProperties(deserializedStations);
+            stationList.AddRange(deserializedStations);
+
+            return stationList;
+        }
+
+        public async Task<IEnumerable<Station>> GetStationByUrl(BasicSearch searchCriteria)
+        {
+            var stationList = new List<Station>();
+
+            var searchCriteriaJson = new StringContent(
+                JsonSerializer.Serialize(searchCriteria, GetSerializeOptions()), 
+                Encoding.UTF8, 
+                "application/json"
+            );
+            var searchUrl = $"https://{_baseUrl}/json/stations/byurl";
+            var apiResponseContent = await GetApiPostResponseContent(searchUrl, searchCriteriaJson);
+
+            var deserializedStations = JsonSerializer.Deserialize<IEnumerable<Station>>(apiResponseContent, GetDeserializeOptions());
             stationList.AddRange(deserializedStations);
 
             return stationList;
@@ -84,20 +101,5 @@ namespace RadioPlayer.Radio
 
             return deserializeOptions;
         }
-
-        // private async Task<IEnumerable<Station>> PopulateStationProperties(IEnumerable<Station> stationList)
-        // {
-        //     var updatedStationList = new List<Station>();
-
-        //     foreach(var station in stationList)
-        //     {
-        //         await _imageDownload.DownloadImage(station.Favicon);
-        //         station.FaviconFileType = _imageDownload.GetContentType();
-        //         station.FaviconBytes = _imageDownload.GetImageBytes();
-        //         updatedStationList.Add(station);
-        //     }
-
-        //     return updatedStationList;
-        // }
     }
 }
