@@ -106,13 +106,20 @@ namespace RadioPlayer.Controllers
         [ActionName("DownloadPlaylistFile")]
         public FileStreamResult DownloadPlaylistFile(Stations stations)
         {
-            var playlistFileBytes = RadioPlayer.Util.FileDownload.GetPlaylistFileBytes(stations.StationList);
-            var dataStream = new MemoryStream(playlistFileBytes);
-            string mimeType = "audio/x-scpls";
-            return new FileStreamResult(dataStream, mimeType)
+            try
             {
-                FileDownloadName = "playlist.pls"
-            };
+                var playlistFileBytes = RadioPlayer.Util.FileDownload.GetPlaylistFileBytes(stations.StationList);
+                var dataStream = new MemoryStream(playlistFileBytes);
+                string mimeType = "audio/x-scpls";
+                return new FileStreamResult(dataStream, mimeType)
+                {
+                    FileDownloadName = "playlist.pls"
+                };
+            }
+            catch(Exception ex) 
+            {
+                return null;
+            }
         }
     }
 }

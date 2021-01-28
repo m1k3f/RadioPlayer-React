@@ -4,9 +4,14 @@ import RadioContext from '../../context/RadioContext';
 
 export default class PlaylistExportButton extends Component {
 
+    state = {
+        isLoading: false
+    }
+
     static contextType = RadioContext;
 
     handleButtonClick = async (e) => {
+        this.showSpinner(true);
 
         const { radioPlaylist } = this.context;
 
@@ -22,14 +27,48 @@ export default class PlaylistExportButton extends Component {
             body: JSON.stringify(stations)
         });
 
-        let serviceResultsObject = await fetch(request).then((response) => response.json());
+        await fetch(request)
+                .then((response) => response.blob())
+                .then((blob) => {
+                    let url = URL.createObjectURL(blob);
+                    let a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'playlist.pls';
+                    a.click();                                      
+                });
+
+        this.showSpinner(false);
+    }
+
+    showSpinner = (show) => {
+        this.setState({
+            isLoading: show
+        });
+    }
+
+    renderExportButton = () => {
+        let content = null;
+        if (this.state.isLoading) {
+            content = (
+                <i className="fas fa-spinner fa-spin"></i>
+            );
+        }
+        else {
+            content = (
+                <button className="iconButton" onClick={this.handleButtonClick} title="Export">
+                    <i className="fas fa-download"></i>
+                </button>
+            );
+        }
+
+        return (content);
     }
 
     render() {
         return(
-            <button className="iconButton" onClick={this.handleButtonClick} title="Export">
-                <i className="fas fa-download"></i>
-            </button>
+            <React.Fragment>
+                {this.renderExportButton()}
+            </React.Fragment>            
         );
     }
 }
