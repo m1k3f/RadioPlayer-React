@@ -33,11 +33,12 @@ export default class Stream extends Component {
             this.pauseStream();
         }
         
+        let srcUrl = station.url_resolved.replace('https:', '').replace('http:', '');
         if (!station.hls) {
-            this.playBasicStream(station.url_resolved);
+            this.playBasicStream(srcUrl);
         }
         else if (station.hls && Hls.isSupported()) {
-            this.playHlsStream(station.url_resolved);
+            this.playHlsStream(srcUrl);
         }        
     }
 
