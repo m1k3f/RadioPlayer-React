@@ -15,7 +15,7 @@ export default class PlaylistStationItem extends Component {
         let stationItem = this.props.station;
         if (stationItem.lastCheckOk === undefined && stationItem.lastCheckTime === undefined) {
             //station data is missing because it was imported
-            this.setStationData(stationItem);
+            await this.setStationData(stationItem);
         }
 
         const { setStation } = this.context;

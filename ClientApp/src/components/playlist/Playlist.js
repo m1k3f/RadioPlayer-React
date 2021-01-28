@@ -23,11 +23,30 @@ export default class Playlist extends Component {
         const { radioPlaylist } = this.context;
         let contextPlaylist = radioPlaylist.playlist;
 
-        if (contextPlaylist.length !== this.state.playlist.length) {
+        if (this.playlistChanged(contextPlaylist, this.state.playlist)) {
             this.setState({
                 playlist: contextPlaylist
             });
         }
+    }
+
+    playlistChanged = (savedPlaylist, statePlaylist) => {
+        let changed = false;
+
+        if (savedPlaylist.length !== statePlaylist.length) {
+            changed = true;
+        }
+        else {
+            //compare each array object
+            savedPlaylist.every((item, index) => {
+                if (JSON.stringify(item) !== JSON.stringify(statePlaylist[index])) {
+                    changed = true;
+                    return false;
+                }
+            });
+        }
+
+        return changed;
     }
 
     render() {

@@ -7,7 +7,7 @@ export default class NextButton extends Component {
     static contextType = RadioContext;
 
     handleButtonClick = (e) => {
-        const { selectedStation, setStation, radioPlaylist } = this.context;
+        const { selectedStation, radioPlaylist } = this.context;
 
         if (selectedStation.station !== null) {
             let selectedIndex = radioPlaylist.playlist.findIndex((station) => 
@@ -16,7 +16,7 @@ export default class NextButton extends Component {
 
             if (selectedIndex > -1 && selectedIndex < radioPlaylist.playlist.length) {
                 let nextStation = radioPlaylist.playlist[selectedIndex + 1];
-                setStation(nextStation, true, true);
+                this.props.controlsCallback(nextStation);
             }
         }
     }

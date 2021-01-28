@@ -61,7 +61,7 @@ export default class PlaylistImportButton extends Component {
     }
 
     setNewPlaylist = () => {
-        const { setPlaylist } = this.context;
+        const { setPlaylist, setStation } = this.context;
         let playlist = [];
         let playlistItem = null;
         let itemCount = 0;
@@ -80,6 +80,8 @@ export default class PlaylistImportButton extends Component {
         });
         
         setPlaylist(playlist);
+
+        setStation(null, false, false);
     }
 
     getFileContents = (file) => {
