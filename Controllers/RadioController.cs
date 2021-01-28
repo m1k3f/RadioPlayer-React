@@ -88,7 +88,8 @@ namespace RadioPlayer.Controllers
             try
             {
                 Util.ImageDownload imageDownload = new Util.ImageDownload(_clientFactory);
-                return await imageDownload.GetStationImage(stationImage);
+                var image = await imageDownload.GetStationImage(stationImage);
+                return image;
 
             }
             catch(Exception ex)

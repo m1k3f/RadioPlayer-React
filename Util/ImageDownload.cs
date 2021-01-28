@@ -20,13 +20,11 @@ namespace RadioPlayer.Util
         public async Task<Models.StationImage> GetStationImage(Models.StationImage stationImage)
         {
             var client = _clientFactory.CreateClient();
-            HttpResponseMessage response = await client.GetAsync(stationImage.ImageUrl);            
-            if (response.IsSuccessStatusCode)
-            {
-                stationImage.ImageFileType = response.Content.Headers.ContentType.MediaType;
-                stationImage.ImageBytes = await response.Content.ReadAsByteArrayAsync();
-                
-            }
+            HttpResponseMessage response = await client.GetAsync(stationImage.ImageUrl);
+            response.EnsureSuccessStatusCode();
+            
+            stationImage.ImageFileType = response.Content.Headers.ContentType.MediaType;
+            stationImage.ImageBytes = await response.Content.ReadAsByteArrayAsync();            
 
             return stationImage;
         }        

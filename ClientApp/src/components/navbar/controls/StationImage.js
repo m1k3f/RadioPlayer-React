@@ -6,31 +6,45 @@ export default class StationImage extends Component {
 
     state = {
         faviconSrc: null,
-        imageSrc: null
+        imageSrc: null,
+        imageError: false
     }
 
     static contextType = RadioContext;
 
     async componentDidUpdate() {
         const { selectedStation } = this.context;
-        if (this.changeImage(selectedStation)) {
+        if (selectedStation.station !== null && this.state.faviconSrc !== null && 
+            this.state.faviconSrc !== selectedStation.station.favicon) {
+            //Selected station was changed, so remove image
+            this.resetImage();
+        }
+        else if (this.state.faviconSrc !== null && selectedStation.station === null) {
+            //Selected station removed, so remove image
+            this.resetImage();
+        }
+        else if (!this.state.imageError && this.changeImage(selectedStation)) {
+            //No image error and we need to set/change the image
             let imageObject = await this.getImage(selectedStation.station);
             let imageSrc = null;
-            if (imageObject != null) {
+            if (imageObject !== null) {
                 imageSrc = `data:${imageObject.imageFileType};base64,${imageObject.imageBytes}`;
             }
 
             this.setState({
                 faviconSrc: selectedStation.station.favicon,
-                imageSrc: imageSrc
+                imageSrc: imageSrc,
+                imageError: (imageObject === null)
             });
-        }
-        else if (this.state.imageSrc !== null && selectedStation.station === null) {
-            this.setState({
-                faviconSrc: null,
-                imageSrc: null
-            });
-        }
+        }        
+    }
+
+    resetImage = () => {
+        this.setState({
+            faviconSrc: null,
+            imageSrc: null,
+            imageError: false
+        });
     }
 
     changeImage = (selectedStation) => {
@@ -76,7 +90,7 @@ export default class StationImage extends Component {
 
     renderImage = () => {
         let content = null;
-        if (this.state.imageSrc != null && this.state.imageSrc.length > 0) {
+        if (this.state.imageSrc != null && this.state.imageSrc.length > 0 && !this.state.imageError) {
             content = (
                 <img className="stationImage" src={this.state.imageSrc} alt=""></img>
             );
