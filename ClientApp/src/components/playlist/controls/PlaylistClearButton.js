@@ -7,8 +7,9 @@ export default class PlaylistClearButton extends Component {
     static contextType = RadioContext;
 
     handleButtonClick = (e) => {
-        const { removePlaylist } = this.context;
+        const { removePlaylist, setStation } = this.context;
         removePlaylist();
+        setStation(null, false, false);
     }
 
     render() {

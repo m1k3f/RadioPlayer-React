@@ -25,6 +25,12 @@ export default class StationImage extends Component {
                 imageSrc: imageSrc
             });
         }
+        else if (this.state.imageSrc !== null && selectedStation.station === null) {
+            this.setState({
+                faviconSrc: null,
+                imageSrc: null
+            });
+        }
     }
 
     changeImage = (selectedStation) => {
