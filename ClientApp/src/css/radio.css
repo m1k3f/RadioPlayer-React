@@ -110,6 +110,14 @@ main .playlist .playlistHeader > * {
     margin-bottom: 4px;
 }
 
+main .playlist .playlistHeader button {
+    transition: transform .2s;
+}
+
+main .playlist .playlistHeader button:hover {
+    transform: scale(1.2);
+}
+
 main .playlist .playlistHeader div > * {
     padding-left: 6px;
     padding-right: 6px;
