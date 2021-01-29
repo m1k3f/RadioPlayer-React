@@ -50,13 +50,13 @@ export default class PlaylistExportButton extends Component {
         let content = null;
         if (this.state.isLoading) {
             content = (
-                <i className="fas fa-spinner fa-spin"></i>
+                <i className="fas fa-spinner fa-spin fa-lg"></i>
             );
         }
         else {
             content = (
-                <button className="iconButton" onClick={this.handleButtonClick} title="Export">
-                    <i className="fas fa-download"></i>
+                <button className="iconButton" onClick={this.handleButtonClick} title="Download Playlist">
+                    <i className="fas fa-file-download fa-lg"></i>
                 </button>
             );
         }

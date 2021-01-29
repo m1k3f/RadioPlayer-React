@@ -130,13 +130,13 @@ export default class PlaylistImportButton extends Component {
         let content = null;
         if (this.state.isLoading) {
             content = (
-                <i className="fas fa-spinner fa-spin"></i>
+                <i className="fas fa-spinner fa-spin fa-lg"></i>
             );
         }
         else {
             content = (
-                <button className="iconButton" onClick={this.handleImportButtonClick} title="Import">
-                    <i className="fas fa-upload"></i>
+                <button className="iconButton" onClick={this.handleImportButtonClick} title="Upload Playlist">
+                    <i className="fas fa-file-upload fa-lg"></i>
                 </button> 
             );
         }
