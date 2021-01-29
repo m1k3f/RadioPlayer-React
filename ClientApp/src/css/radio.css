@@ -38,11 +38,10 @@ header section .headerControls {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 4px;
 }
 
 header section .stationImage {
-    float: left;
+    float: right;
     width: 50px;
     height: 50px;
     /* margin-right: 10px; */

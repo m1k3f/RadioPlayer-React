@@ -88,21 +88,29 @@ export default class StationImage extends Component {
         }
     }
 
-    renderImage = () => {
-        let content = null;
-        if (this.state.imageSrc != null && this.state.imageSrc.length > 0 && !this.state.imageError) {
-            content = (
-                <img className="stationImage" src={this.state.imageSrc} alt=""></img>
-            );
-        }
+    // renderImage = () => {
+    //     let content = null;
+    //     if (this.state.imageSrc != null && this.state.imageSrc.length > 0 && !this.state.imageError) {
+    //         content = (
+    //             <img className="stationImage" src={this.state.imageSrc} alt=""></img>
+    //         );
+    //     }
 
-        return (content);
-    }
+    //     return (content);
+    // }
 
     render() {
+        let imgStyle = {};
+        if (this.state.imageSrc === null) {
+            imgStyle = {
+                opacity: 0
+            };
+        }
+
         return (
             <React.Fragment>
-                {this.renderImage()}
+                {/* {this.renderImage()} */}
+                <img className="stationImage" style={imgStyle} src={this.state.imageSrc} alt=""></img>
             </React.Fragment>
         );
     }
