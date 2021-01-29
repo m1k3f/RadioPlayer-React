@@ -47,6 +47,11 @@ header section .stationImage {
     /* margin-right: 10px; */
     /* border: 1px solid #e6e6e6; */
     margin-top: 4px;
+    transition: transform .2s;
+}
+
+header section .stationImage:hover {
+    transform: scale(1.5);
 }
 
 header section button {
