@@ -97,11 +97,15 @@ export default class PlaylistStationItem extends Component {
             }
         }
 
+        let stationName = (this.props.station.name === undefined || this.props.station.name.length === 0) ?
+                            this.props.station.url_resolved : 
+                            this.props.station.name;
+
         return (
             <div className="playlistStationItem fade-in" style={selectedStyle}>
                 <p title={this.props.station.name} onClick={this.handleButtonClick}>
                     <StationTypeImage station={this.props.station} />&nbsp;&nbsp;
-                    {this.props.station.name}
+                    {stationName}
                 </p>
                 <div className="stationItemControls">                    
                     <StationHomepageLink station={this.props.station} />
