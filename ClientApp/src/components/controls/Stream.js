@@ -11,13 +11,13 @@ export default class Stream extends Component {
 
     static contextType = RadioContext;
 
+    stationSrc = '';
+
     componentDidUpdate() {
         const { selectedStation } = this.context;
         
-        if (selectedStation.play && selectedStation.station !== null) {
-            //station selected, src not playing => play src            
-            if (this.streamer.src.length === 0 || 
-                (this.streamer.src.length > 0 && this.streamer.src !== selectedStation.station.url_resolved)) {
+        if (selectedStation.play && selectedStation.station !== null) {                       
+            if (this.shouldPlay(selectedStation.station)) {
                 this.playStream(selectedStation.station);
             }
         }
@@ -28,12 +28,28 @@ export default class Stream extends Component {
         }
     }
 
-    playStream = (station) => {
-        if (!this.streamer.paused) {
-            this.pauseStream();
+    shouldPlay = (station) => {
+        let shouldPlay = false;
+        if (this.stationSrc.length === 0 && this.streamer.paused) {
+            //playing for the first time
+            shouldPlay = true;
         }
+        else if (this.stationSrc.length > 0 && station.url_resolved.length > 0) {
+            //let streamerSrc = this.streamer.src.replace('https://', '').replace('http://', '');
+            let selectedSrc = station.url_resolved.replace('https:', '').replace('http:', '');
+            
+            //if true: not playing for the first time, station was switched
+            shouldPlay = (this.stationSrc !== selectedSrc); 
+        }
+
+        return shouldPlay;
+    }
+
+    playStream = (station) => {
+        this.pauseStream();
         
         let srcUrl = station.url_resolved.replace('https:', '').replace('http:', '');
+        this.stationSrc = srcUrl;
         if (!station.hls) {
             this.playBasicStream(srcUrl);
         }
@@ -53,16 +69,19 @@ export default class Stream extends Component {
 
         hlsJs.on(Hls.Events.ERROR, (event, data) => {
             hlsJs.stopLoad();
+            hlsJs.detachMedia();
             hlsJs.destroy();
             hlsJs = undefined;
-        });
+        });        
 
-        hlsJs.on(Hls.Events.MANIFEST_PARSED, () => {
+        hlsJs.on(Hls.Events.MANIFEST_PARSED, () => {            
+            hlsJs.startLoad();
             this.streamer.play();
         });
 
+        hlsJs.attachMedia(this.streamer);        
         hlsJs.loadSource(stationUrl);
-        hlsJs.attachMedia(this.streamer);
+        this.streamer.load();
     }
 
     pauseStream = () => {
