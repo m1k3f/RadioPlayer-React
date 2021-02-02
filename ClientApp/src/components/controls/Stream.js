@@ -12,6 +12,8 @@ export default class Stream extends Component {
     static contextType = RadioContext;
 
     stationSrc = '';
+    stationSrcRetry = false;
+    hlsJs = null;
 
     componentDidUpdate() {
         const { selectedStation } = this.context;
@@ -23,7 +25,7 @@ export default class Stream extends Component {
         }
         else if (!selectedStation.play && selectedStation.station !== null && 
                 !this.streamer.paused) {
-            //station not selected (paused), src is playing => stop src
+            //pause button is pushed, src is still playing => stop src
             this.pauseStream();           
         }
     }
@@ -34,12 +36,13 @@ export default class Stream extends Component {
             //playing for the first time
             shouldPlay = true;
         }
-        else if (this.stationSrc.length > 0 && station.url_resolved.length > 0) {
-            //let streamerSrc = this.streamer.src.replace('https://', '').replace('http://', '');
-            let selectedSrc = station.url_resolved.replace('https:', '').replace('http:', '');
+        else if (this.stationSrc.length > 0 && station.url_resolved.length > 0) {            
+            //let selectedSrc = station.url_resolved.replace('https:', '').replace('http:', '');
+            let selectedSrc = station.url_resolved;
             
             //if true: not playing for the first time, station was switched
-            shouldPlay = (this.stationSrc !== selectedSrc); 
+            shouldPlay = (this.stationSrc !== selectedSrc);
+            this.stationSrcRetry = (shouldPlay) ? false : true;
         }
 
         return shouldPlay;
@@ -48,9 +51,11 @@ export default class Stream extends Component {
     playStream = (station) => {
         this.pauseStream();
         
-        let srcUrl = station.url_resolved.replace('https:', '').replace('http:', '');
+        //let srcUrl = station.url_resolved.replace('https:', '').replace('http:', '');
+        let srcUrl = station.url_resolved;
         this.stationSrc = srcUrl;
         if (!station.hls) {
+            this.hlsJs = null;
             this.playBasicStream(srcUrl);
         }
         else if (station.hls && Hls.isSupported()) {
@@ -65,26 +70,40 @@ export default class Stream extends Component {
     }
 
     playHlsStream = (stationUrl) => {
-        let hlsJs = new Hls();
+        this.hlsJs = new Hls();
 
-        hlsJs.on(Hls.Events.ERROR, (event, data) => {
-            hlsJs.stopLoad();
-            hlsJs.detachMedia();
-            hlsJs.destroy();
-            hlsJs = undefined;
+        this.hlsJs.on(Hls.Events.ERROR, (event, data) => {
+            this.hlsJs.stopLoad();
+            
+            if (data.details === Hls.ErrorDetails.MANIFEST_LOAD_ERROR && !this.stationSrcRetry) {
+                this.stationSrcRetry = true;
+                let newSrc = this.stationSrc.replace('https:', '').replace('http:', '');
+                this.hlsJs.loadSource(newSrc);
+
+                this.streamer.load();
+            }
+            else {
+                this.hlsJs.detachMedia();
+                this.hlsJs.destroy(); 
+                this.hlsJs = null;
+            }
         });        
 
-        hlsJs.on(Hls.Events.MANIFEST_PARSED, () => {            
-            hlsJs.startLoad();
+        this.hlsJs.on(Hls.Events.MANIFEST_PARSED, () => {            
+            this.hlsJs.startLoad();
             this.streamer.play();
         });
 
-        hlsJs.attachMedia(this.streamer);        
-        hlsJs.loadSource(stationUrl);
+        this.hlsJs.attachMedia(this.streamer);        
+        this.hlsJs.loadSource(stationUrl);
         this.streamer.load();
     }
 
     pauseStream = () => {
+        if (this.hlsJs !== null) {
+            this.hlsJs.stopLoad();
+        }
+
         this.streamer.pause();
         this.streamer.removeAttribute('src'); 
     }
