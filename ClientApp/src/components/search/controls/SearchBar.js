@@ -67,6 +67,8 @@ export default class SearchBar extends Component {
             this.searchCodec.value = '';
             this.searchBitrate.value = '';
         }
+
+        this.props.stationSearchCallback(null);
     }
 
     handleExpandButtonClick = (e) => {

@@ -19,29 +19,42 @@ export default class StationSearch extends Component {
     searchFields = null;
 
     handleSearchBarCallback = async (searchFields) => {
-        const { setSearchResultsLoading } = this.context;
-        setSearchResultsLoading(true);
+        if (searchFields !== null) {
+            const { setSearchResultsLoading } = this.context;
+            setSearchResultsLoading(true);
 
-        this.searchFields = searchFields;
+            this.searchFields = searchFields;
 
-        let offset = 0;
-        let limit = 10;
-        let searchCriteria = this.getSearchCriteria(searchFields, offset, limit);
-        let results = await this.getSearchResults(searchCriteria);
-        
-        this.setState(
+            let offset = 0;
+            let limit = 10;
+            let searchCriteria = this.getSearchCriteria(searchFields, offset, limit);
+            let results = await this.getSearchResults(searchCriteria);
+            
+            this.setState(
+                {
+                    searchResults: {
+                        offset: offset,
+                        limit: limit,
+                        results: results
+                    }
+                },
+                () => {
+                    const { setSearchResultsLoading } = this.context;
+                    setSearchResultsLoading(false);
+                }
+            );
+        }
+        else {
+            this.setState(
             {
                 searchResults: {
-                    offset: offset,
-                    limit: limit,
-                    results: results
+                    offset: 0,
+                    limit: 10,
+                    results: null
                 }
-            },
-            () => {
-                const { setSearchResultsLoading } = this.context;
-                setSearchResultsLoading(false);
-            }
-        );        
+            });
+
+        }
     }
 
     handleSearchResultsCallback = async () => {
