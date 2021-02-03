@@ -69,11 +69,11 @@ namespace RadioPlayer.Controllers
 
         [HttpPost]
         [ActionName("CountStation")]
-        public void CountStation([FromBody]string stationId)
+        public void CountStation([FromBody]StationCount stationCount)
         {
             try
             {
-                _radioBrowser.CountStation(stationId);
+                _radioBrowser.CountStation(stationCount.StationId);
             }
             catch(Exception)
             {

@@ -102,6 +102,9 @@ export default class Stream extends Component {
     pauseStream = () => {
         if (this.hlsJs !== null) {
             this.hlsJs.stopLoad();
+            // this.hlsJs.detachMedia();
+            // this.hlsJs.destroy(); 
+            // this.hlsJs = null;
         }
 
         this.streamer.pause();
@@ -109,7 +112,26 @@ export default class Stream extends Component {
     }
 
     handlePlay = (e) => {
-        this.streamer.volume = '0.2';
+        this.streamer.volume = '0.25';
+
+        const { selectedStation } = this.context;
+        this.countStation(selectedStation.station.stationuuid);
+    }
+
+    countStation = (stationId) => {
+        let stationCount = {
+            stationId: stationId
+        }
+
+        let request = new Request('api/radio/countStation', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },                    
+            body: JSON.stringify(stationCount)
+        });
+
+        fetch(request);
     }
 
     render() {        
