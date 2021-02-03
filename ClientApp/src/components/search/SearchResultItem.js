@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
+
 import AddPlaylistStationButton from './controls/AddPlaylistStationButton'
-import SearchStationLink from './controls/SearchStationLink'
+import TagList from './controls/TagList';
 
 export default class SearchResultItem extends Component {
 
@@ -19,11 +20,11 @@ export default class SearchResultItem extends Component {
         return (
             <div className="searchResultItem" style={resultItemStyle}>
                 <AddPlaylistStationButton stationItem={resultItem} />
-                <div className="searchResultItemDescription">                    
-                    {/* <SearchStationLink /> */}                    
+                <div className="searchResultItemDescription">
                     <a href={resultItem.homepage} title={resultItem.name} target="_blank" rel="noopener noreferrer">
                         {resultItem.name}
                     </a>
+                    <TagList tagList={resultItem.tags} />
                     <p>{state}{resultItem.country}</p>
                     <p>{resultItem.codec} {bitrate}</p>                    
                 </div>

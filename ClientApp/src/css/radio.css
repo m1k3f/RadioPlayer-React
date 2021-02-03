@@ -30,7 +30,7 @@ header {
 }
 
 header section {
-    padding-top: 4px;
+    /* padding-top: 4px; */
 }
 
 header section .headerControls {
@@ -38,6 +38,7 @@ header section .headerControls {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 30px;
 }
 
 header section .stationImage {
@@ -46,7 +47,7 @@ header section .stationImage {
     height: 50px;
     /* margin-right: 10px; */
     /* border: 1px solid #e6e6e6; */
-    margin-top: 4px;
+    /* margin-top: 4px; */
     transition: transform .2s;
 }
 
@@ -91,7 +92,7 @@ main .stream {
 main .playlist {
     display: flex;
     flex-direction: column;
-    width: 45vw;
+    width: 40vw;
     /* max-height: 30vh; */    
     margin-bottom: 10px;
 }
@@ -232,7 +233,7 @@ main .stationSearch .searchControlsAdvanced .searchControls input {
     width: 70%;
     height: 40px;
     font-size: 22px;
-    border: 0;
+    border: 1px solid #e9e9e9;
     text-align: center;
 }
 
@@ -284,8 +285,12 @@ main .stationSearch .searchResults .searchResultItem .searchResultItemDescriptio
     /* align-items: center; */
     /* justify-content:flex-start; */
     text-align: start;
-    width: 20vw;
+    width: 23vw;
 }
+
+/* main .stationSearch .searchResults .searchResultItem .searchResultItemDescription > * {
+    margin-bottom: 1px;
+} */
 
 main .stationSearch .searchResults .searchResultItem .searchResultItemDescription > a {
     font-size: 14px;
@@ -295,10 +300,33 @@ main .stationSearch .searchResults .searchResultItem .searchResultItemDescriptio
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 1px;
 }
 
 main .stationSearch .searchResults .searchResultItem .searchResultItemDescription p {
     font-size: 11px;
     text-align: left;
-    margin: 0;
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+
+main .stationSearch .searchResults .searchResultItem .searchResultItemDescription .searchResultItemTagList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+main .stationSearch .searchResults .searchResultItem .searchResultItemDescription .searchResultItemTag {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-top: 1px;
+    margin-right: 2px;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: #4682b4;
+    color: #f4f4f4;
+    font-weight: 600;
 }
