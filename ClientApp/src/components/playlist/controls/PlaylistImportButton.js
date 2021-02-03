@@ -5,23 +5,10 @@ import RadioContext from '../../context/RadioContext';
 export default class PlaylistImportButton extends Component {
 
     state = {
-        isLoading: false,
-        fileContents: null
+        isLoading: false
     }
 
     static contextType = RadioContext;
-
-    componentDidUpdate() {
-        if (this.state.isLoading && this.state.fileContents !== null) {
-            //Build playlist object and set context state
-            this.setNewPlaylist();
-
-            this.setState({
-                isLoading: false,
-                fileContents: null
-            });
-        }
-    }
 
     handleImportButtonClick = (e) => {
         this.fileImport.click();
@@ -37,51 +24,18 @@ export default class PlaylistImportButton extends Component {
             if (fileContents.length > 0) {
                 let contentArray = this.getContentArray(fileContents);
                 if (contentArray.length > 0) {
-                    this.setState({
-                        fileContents: contentArray
-                    });
+                    await this.populateStationData(contentArray);
                 }
-                else {
-                    this.showSpinner(false);
-                }
-            }
-            else {
-                this.showSpinner(false);
             }
         }
-        else {
-            this.showSpinner(false);
-        }      
+
+        this.showSpinner(false);
     }
 
     showSpinner = (show) => {
         this.setState({
             isLoading: show
         });
-    }
-
-    setNewPlaylist = () => {
-        const { setPlaylist, setStation } = this.context;
-        let playlist = [];
-        let playlistItem = null;
-        let itemCount = 0;
-        this.state.fileContents.forEach(item => {
-            itemCount++;
-            playlistItem = {
-                stationuuid: itemCount,
-                name: item.title,
-                url_resolved: item.file,
-                homepage: '',
-                codec: '',
-                favicon: '',
-                tags: ''                
-            };
-            playlist.push(playlistItem);
-        });
-        
-        setPlaylist(playlist);
-
-        setStation(null, false, false);
     }
 
     getFileContents = (file) => {
@@ -124,6 +78,93 @@ export default class PlaylistImportButton extends Component {
         });
 
         return contentArray;
+    }
+
+    populateStationData = async (fileContents) => {       
+        const { setPlaylist, setStation } = this.context; 
+        let populatedPlaylist = [];
+        for (let i=0; i < fileContents.length; i++) {
+            let stationItem = {
+                name: fileContents[i].title,
+                url_resolved: fileContents[i].file,
+            }
+            stationItem = await this.getStationData(stationItem, i);
+            populatedPlaylist.push(stationItem);
+        }
+
+        setPlaylist(populatedPlaylist);
+        setStation(null, false, false);
+    }
+
+    getStationData = async (stationItem, index) => {
+        let returnStation = stationItem;
+
+        let apiStationDataByUrl = await this.getStationDataByUrl(stationItem.url_resolved);
+        if (apiStationDataByUrl.length > 0) {
+            returnStation = apiStationDataByUrl[0];
+        }
+        else if (stationItem.name !== undefined && stationItem.name.length > 0) {
+            //Try to find station by name and compare url_resolved
+            let apiStationDataByName = await this.getSearchResultsByName(stationItem.name);
+            if (apiStationDataByName.length > 0) {                
+                returnStation = apiStationDataByName[0];
+            }
+        }
+        
+        if (returnStation.stationuuid === undefined) {
+            returnStation.stationuuid = index;
+            returnStation.homepage = '';
+            returnStation.codec = '';
+            returnStation.favicon = '';
+            returnStation.tags = '';
+        }
+
+        return returnStation;
+    }
+
+    getStationDataByUrl = async (stationUrl) => {
+        let urlSearch = {
+            url: stationUrl
+        }
+
+        let request = new Request('api/radio/searchStationByUrl', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },                    
+            body: JSON.stringify(urlSearch)
+        });
+
+        let serviceResponse = await fetch(request).then((response) => response.json());
+        if (serviceResponse.stationList.length > 0) {
+            return serviceResponse.stationList;
+        }
+        else {
+            return [];
+        }
+    }
+
+    getSearchResultsByName = async (stationName) => {
+        let searchCriteria = {
+            name: stationName
+        }
+
+        let request = new Request('api/radio/searchStations', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },                    
+            body: JSON.stringify(searchCriteria)
+        });
+
+        let serviceResult = await fetch(request).then((response) => response.json());
+        if (serviceResult.serviceError === null && serviceResult.stationList != null &&
+            serviceResult.stationList.length > 0) {
+                return serviceResult.stationList;
+            }
+        else {
+            return [];
+        }
     }
 
     renderImportButton = () => {
