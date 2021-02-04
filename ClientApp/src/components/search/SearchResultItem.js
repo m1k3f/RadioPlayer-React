@@ -7,11 +7,14 @@ export default class SearchResultItem extends Component {
 
     renderCodecBitrate = (resultItem) => {
         let content = null;
+        let codec = (resultItem.codec.length > 0 && resultItem.codec.toLowerCase() === 'unknown') ? 
+                    '' : 
+                    resultItem.codec;
         let bitrate = (resultItem.bitrate > 0) ? `${resultItem.bitrate}kbps` : '';
 
         if (resultItem.lastCheckOk) {
             content = (
-                <p>{resultItem.codec} {bitrate}</p>
+                <p>{codec} {bitrate}</p>
             );
         }
         else {
@@ -22,7 +25,7 @@ export default class SearchResultItem extends Component {
             content = (
                 <p>
                     <i className="fas fa-exclamation-triangle" style={warningStyle} title={warningTitle}></i>&nbsp;
-                    {resultItem.codec} 
+                    {resultItem.codec}&nbsp;
                     {bitrate}
                 </p>
             );
