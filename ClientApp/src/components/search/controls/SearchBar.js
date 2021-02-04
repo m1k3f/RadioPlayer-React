@@ -130,12 +130,12 @@ export default class SearchBar extends Component {
                             <i className="fas fa-search fa-lg"></i>
                         </button>
                         <button onClick={this.handleClearButtonClick}>
-                            <i className="fas fa-backspace fa-lg"></i>
+                            <i className="fas fa-times-circle fa-lg"></i>
                         </button>
                     </div>
                     {/* <AdvancedSearchButton /> */}
                     <div className="controlItem">
-                        <button onClick={this.handleExpandButtonClick} style={{padding: '8px'}}>
+                        <button onClick={this.handleExpandButtonClick} style={{paddingLeft: '8px'}}>
                             <i className={expandButtonClass}></i>
                         </button>
                     </div>
