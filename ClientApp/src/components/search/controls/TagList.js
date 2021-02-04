@@ -7,9 +7,9 @@ export default class TagList extends Component  {
         let { tagList } = this.props;
         if (tagList !== null && tagList.length > 0) {
             let tagArray = tagList.split(',');
-            content = tagArray.map((tag) => {
+            content = tagArray.map((tag, index) => {
                 return (
-                    <span key={tag} className="searchResultItemTag">
+                    <span key={index} className="searchResultItemTag">
                         {tag}
                     </span>
                 );
