@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RadioPlayer.Models;
+using Models.Radio;
 using RadioPlayer.Radio;
 
 namespace RadioPlayer.Controllers
@@ -117,7 +117,7 @@ namespace RadioPlayer.Controllers
                     FileDownloadName = "playlist.pls"
                 };
             }
-            catch(Exception ex) 
+            catch(Exception) 
             {
                 return null;
             }

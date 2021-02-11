@@ -1,4 +1,4 @@
-namespace RadioPlayer.Models
+namespace Models.Radio
 {
     public class StationImage
     {

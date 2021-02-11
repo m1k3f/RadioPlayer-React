@@ -1,6 +1,6 @@
 using System;
 
-namespace RadioPlayer.Models
+namespace Models.Radio
 {
     public class Station
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RadioPlayer.Models
+namespace Models.Radio
 {
     public class Stations
     {

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+using Models.Radio;
+
 namespace RadioPlayer.Util
 {    
     public class ImageDownload
@@ -17,7 +19,7 @@ namespace RadioPlayer.Util
             _clientFactory = clientFactory;
         }        
 
-        public async Task<Models.StationImage> GetStationImage(Models.StationImage stationImage)
+        public async Task<StationImage> GetStationImage(StationImage stationImage)
         {
             var client = _clientFactory.CreateClient();
             HttpResponseMessage response = await client.GetAsync(stationImage.ImageUrl);

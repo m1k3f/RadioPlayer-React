@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings;
 
-using RadioPlayer.Models;
+using Models.Radio;
 
 namespace RadioPlayer.Util
 {
