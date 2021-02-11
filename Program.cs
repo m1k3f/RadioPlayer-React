@@ -30,7 +30,7 @@ namespace RadioPlayer_React
                 {
                     webBuilder.UseKestrel()
                                 .UseContentRoot(Directory.GetCurrentDirectory())
-                                //.UseUrls("http://*:5000", "https://*:5001")
+                                // .UseUrls("http://localhost:5010", "https://localhost:5011")
                                 .UseStartup<Startup>();
                 });
     }
