@@ -23,7 +23,6 @@ namespace RadioPlayer_React
                 .ConfigureLogging(logging => 
                 {
                     logging.ClearProviders();
-                    //logging.AddConsole();
                     logging.AddNLog();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>

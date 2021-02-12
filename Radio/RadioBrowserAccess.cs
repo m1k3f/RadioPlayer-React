@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Models.Radio;
 
-namespace RadioPlayer.Radio
+namespace Radio
 {    
     public class RadioBrowserAccess
     {

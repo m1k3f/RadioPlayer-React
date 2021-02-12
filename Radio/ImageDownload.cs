@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using Models.Radio;
 
-namespace RadioPlayer.Radio
+namespace Radio
 {    
     public class ImageDownload
     {

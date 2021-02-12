@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Models.Radio;
-using RadioPlayer.Radio;
+using Radio;
 
 namespace RadioPlayer.Controllers
 {
@@ -109,7 +109,7 @@ namespace RadioPlayer.Controllers
         {
             try
             {
-                var playlistFileBytes = RadioPlayer.Radio.FileDownload.GetPlaylistFileBytes(stations.StationList);
+                var playlistFileBytes = Radio.FileDownload.GetPlaylistFileBytes(stations.StationList);
                 var dataStream = new MemoryStream(playlistFileBytes);
                 string mimeType = "audio/x-scpls";
                 return new FileStreamResult(dataStream, mimeType)
