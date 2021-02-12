@@ -7,7 +7,7 @@ using System.Text.Encodings;
 
 using Models.Radio;
 
-namespace RadioPlayer.Util
+namespace RadioPlayer.Radio
 {
     public class FileDownload
     {

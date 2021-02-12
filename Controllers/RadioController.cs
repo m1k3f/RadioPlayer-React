@@ -87,7 +87,7 @@ namespace RadioPlayer.Controllers
         {
             try
             {
-                Util.ImageDownload imageDownload = new Util.ImageDownload(_clientFactory);
+                Radio.ImageDownload imageDownload = new Radio.ImageDownload(_clientFactory);
                 var image = await imageDownload.GetStationImage(stationImage);
                 return image;
 
@@ -109,7 +109,7 @@ namespace RadioPlayer.Controllers
         {
             try
             {
-                var playlistFileBytes = RadioPlayer.Util.FileDownload.GetPlaylistFileBytes(stations.StationList);
+                var playlistFileBytes = RadioPlayer.Radio.FileDownload.GetPlaylistFileBytes(stations.StationList);
                 var dataStream = new MemoryStream(playlistFileBytes);
                 string mimeType = "audio/x-scpls";
                 return new FileStreamResult(dataStream, mimeType)
