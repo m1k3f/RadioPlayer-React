@@ -19,7 +19,7 @@ export default class Controls extends Component {
     render() {
         return (
             <section>
-                <StationImage />
+                <div style={{width:'50px',height:'50px'}} />
                 <div className="headerControls">
                     <div>
                         <PreviousButton controlsCallback={this.handleButtonCallback} />
@@ -28,6 +28,7 @@ export default class Controls extends Component {
                     </div>
                     {/* <VolumeSlider /> */}
                 </div>
+                <StationImage />
             </section>
         );
     }

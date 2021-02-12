@@ -11,9 +11,7 @@
 }
 
 body {
-    /* width: 90%; */
     margin: auto;
-    /* overflow: scroll; */
 }
 
 .radioApp {
@@ -23,14 +21,14 @@ body {
 header {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     min-height: 12vh;
-    background-image: linear-gradient(#e6e6e6, #f2f2f2, #ffffff);
+    background-image: linear-gradient(#e6e6e6, #f2f2f2, #ffffff);    
 }
 
 header section {
-    /* padding-top: 4px; */
+    display: flex;
 }
 
 header section .headerControls {
@@ -39,15 +37,12 @@ header section .headerControls {
     justify-content: center;
     align-items: center;
     margin-right: 30px;
+    margin-left: 30px;
 }
 
 header section .stationImage {
-    float: right;
     width: 50px;
     height: 50px;
-    /* margin-right: 10px; */
-    /* border: 1px solid #e6e6e6; */
-    /* margin-top: 4px; */
     transition: transform .2s;
 }
 
@@ -70,6 +65,13 @@ header section input {
     width: 80%;
 }
 
+header a {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px;
+}
+
 header > a > i {
     color: black;
 }
@@ -79,7 +81,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* width: 80%; */
 }
 
 main .stream {
@@ -92,8 +93,7 @@ main .stream {
 main .playlist {
     display: flex;
     flex-direction: column;
-    width: 40vw;
-    /* max-height: 30vh; */    
+    width: 40vw;  
     margin-bottom: 10px;
 }
 

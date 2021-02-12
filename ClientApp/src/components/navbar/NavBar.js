@@ -7,7 +7,7 @@ export default class NavBar extends Component {
     render() {
         return (
             <header>
-                <HeaderTitle />
+                {/* <HeaderTitle /> */}
                 <Controls />
                 <SourceControlLink />
             </header>
