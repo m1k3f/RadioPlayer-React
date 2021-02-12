@@ -17,23 +17,40 @@ export default class MoreResultsButton extends Component {
     // }
 
     handleButtonClick = (e) => {
-        // this.setState({
-        //     isLoading: true
-        // });
+        this.setState({
+            isLoading: true
+        });
 
         this.props.searchResultsCallback();
 
-        // this.setState({
-        //     isLoading: false
-        // });
+        this.setState({
+            isLoading: false
+        });
     }
 
-    render() {
-        let buttonContent = (this.state.isLoading) ? <i className="fas fa-spinner fa-spin"></i> : 'More Results';
+    renderItem = () => {
+        let content = null;
+        if (this.state.isLoading) {
+            content = (
+                <i className="fas fa-spinner fa-spin"></i>
+            );
+        }
+        else {
+            content = (
+                <button className="moreResultsButton" onClick={this.handleButtonClick}>
+                    More Results
+                </button>
+            );
+        }
+
+        return (content);
+    }
+
+    render() {        
         return (
-            <button onClick={this.handleButtonClick}>
-                {buttonContent}
-            </button>
+            <div className="moreResults">
+                {this.renderItem()}
+            </div>
         );
     }
 }

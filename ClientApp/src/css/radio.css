@@ -263,7 +263,11 @@ main .stationSearch .searchControlsAdvanced .searchAdvanced div > * {
 }
 
 main .stationSearch .searchResults {
-    overflow: auto;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+    /* width: 100%; */
 }
 
 main .stationSearch .searchResults .searchResultItem {
@@ -273,24 +277,33 @@ main .stationSearch .searchResults .searchResultItem {
     align-items: center;
     /* border-bottom: 1px solid black; */
     margin-bottom: 6px;
+    /* width: 70%; */
 }
 
 main .stationSearch .searchResults .searchResultItem:hover {
     background-color: #dae6f0;
 }
 
+main .stationSearch .searchResults .searchResultItem .playlistAdd {
+    margin-right: 10px;
+}
+
+main .stationSearch .searchResults .searchResultItem .playlistAdd button,
+main .stationSearch .searchResults .searchResultItem .playlistAdd i {
+    padding: 0;
+    margin: 0;
+}
+
+main .stationSearch .searchResults .searchResultItem .playlistAdd i {
+    font-size: 24px;
+}
+
 main .stationSearch .searchResults .searchResultItem .searchResultItemDescription {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content:flex-start; */
     text-align: start;
     width: 23vw;
 }
-
-/* main .stationSearch .searchResults .searchResultItem .searchResultItemDescription > * {
-    margin-bottom: 1px;
-} */
 
 main .stationSearch .searchResults .searchResultItem .searchResultItemDescription > a {
     font-size: 14px;
@@ -329,4 +342,13 @@ main .stationSearch .searchResults .searchResultItem .searchResultItemDescriptio
     background-color: #4682b4;
     color: #f4f4f4;
     font-weight: 600;
+}
+
+main .stationSearch .searchResults .moreResults {
+    text-align: center;
+}
+
+main .stationSearch .searchResults .moreResultsButton {
+    background-color: #edf3f8;
+    padding: 6px;
 }

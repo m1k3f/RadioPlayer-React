@@ -23,9 +23,7 @@ export default class AddPlaylistStationButton extends Component {
         let content = null;
         if (this.state.stationAdded) {
             let selectedStyle = {
-                color: 'green',
-                paddingLeft: '5px',
-                paddingRight: '5px'
+                color: 'green'
             }
             content = (
                 <i className="fas fa-check-circle fa-2x" style={selectedStyle}></i>
@@ -44,9 +42,9 @@ export default class AddPlaylistStationButton extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div className="playlistAdd">
                 {this.renderButton()}
-            </React.Fragment>
+            </div>
         );
     }
 }
