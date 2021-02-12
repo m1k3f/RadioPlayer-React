@@ -108,7 +108,8 @@ export default class Stream extends Component {
         }
 
         this.streamer.pause();
-        this.streamer.removeAttribute('src'); 
+        this.streamer.removeAttribute('src');
+        this.stationSrc = '';
     }
 
     handlePlay = (e) => {
