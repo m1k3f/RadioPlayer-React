@@ -1,17 +1,8 @@
-﻿* {
-    box-sizing: border-box;
-    font-family: 'Segoe UI',Arial,sans-serif;
-}
-
-.iconButton {
+﻿.iconButton {
     outline: none;
     border: none;
     background:none;
     cursor: pointer;
-}
-
-body {
-    margin: auto;
 }
 
 .radioApp {
