@@ -2,6 +2,7 @@
 
 import AddPlaylistStationButton from './controls/AddPlaylistStationButton'
 import TagList from './controls/TagList';
+import styles from './Search.module.css';
 
 export default class SearchResultItem extends Component {
 
@@ -14,7 +15,7 @@ export default class SearchResultItem extends Component {
 
         if (resultItem.lastCheckOk) {
             content = (
-                <p>{codec} {bitrate}</p>
+                <p className={styles.resultItemDescriptionText}>{codec} {bitrate}</p>
             );
         }
         else {
@@ -23,7 +24,7 @@ export default class SearchResultItem extends Component {
                 color: 'red'
             }
             content = (
-                <p>
+                <p className={styles.resultItemDescriptionText}>
                     <i className="fas fa-exclamation-triangle" style={warningStyle} title={warningTitle}></i>&nbsp;
                     {resultItem.codec}&nbsp;
                     {bitrate}
@@ -46,14 +47,15 @@ export default class SearchResultItem extends Component {
         }
 
         return (
-            <div className="searchResultItem" style={resultItemStyle}>
+            <div className={styles.searchResultItem} style={resultItemStyle}>
                 <AddPlaylistStationButton stationItem={resultItem} />
-                <div className="searchResultItemDescription">
-                    <a href={resultItem.homepage} title={resultItem.name} target="_blank" rel="noopener noreferrer">
+                <div className={styles.searchResultItemDescription}>
+                    <a className={styles.resultItemDescriptionHomepage} href={resultItem.homepage} 
+                        title={resultItem.name} target="_blank" rel="noopener noreferrer">
                         {resultItem.name}
                     </a>
                     <TagList tagList={resultItem.tags} />
-                    <p>{state}{resultItem.country}</p>
+                    <p className={styles.resultItemDescriptionText}>{state}{resultItem.country}</p>
                     {this.renderCodecBitrate(resultItem)}                   
                 </div>
             </div>

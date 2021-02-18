@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../../context/RadioContext';
+import styles from './SearchControls.module.css';
 
 export default class AddPlaylistStationButton extends Component {
 
@@ -23,15 +24,23 @@ export default class AddPlaylistStationButton extends Component {
         let content = null;
         if (this.state.stationAdded) {
             let selectedStyle = {
-                color: 'green'
+                color: 'green',
+                fontSize: '24px',
+                padding: 0,
+                margin: 0
             }
             content = (
                 <i className="fas fa-check-circle fa-2x" style={selectedStyle}></i>
             );
         }
         else {
+            let itemStyle = {
+                padding: 0,
+                margin: 0
+            };
+
             content = (
-                <button onClick={this.handleButtonClick} className="iconButton">
+                <button className={styles.iconButton} onClick={this.handleButtonClick} style={itemStyle}>
                     <i className="fas fa-plus-circle fa-2x"></i>
                 </button>
             );
@@ -42,7 +51,7 @@ export default class AddPlaylistStationButton extends Component {
 
     render() {
         return (
-            <div className="playlistAdd">
+            <div className={styles.playlistAdd}>
                 {this.renderButton()}
             </div>
         );

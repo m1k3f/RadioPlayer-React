@@ -3,6 +3,7 @@
 import RadioContext from '../context/RadioContext';
 import SearchResultItem from './SearchResultItem'
 import MoreResultsButton from './controls/MoreResultsButton'
+import styles from './Search.module.css';
 
 export default class SearchResults extends Component {
 
@@ -51,7 +52,7 @@ export default class SearchResults extends Component {
         }
 
         return (
-            <div className="searchResults">
+            <div className={styles.searchResults}>
                 {content}
                 {this.renderMoreResultsButton(content)}
             </div>

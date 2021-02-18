@@ -1,0 +1,112 @@
+.iconButton {
+    outline: none;
+    border: none;
+    background:none;
+    cursor: pointer;
+}
+
+.stationSearch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    z-index: 100;
+    width: 60vw;
+}
+
+.searchControlsAdvanced {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.searchControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%
+}
+
+.controlItem:nth-of-type(1) {flex-grow: 1;}
+.controlItem:nth-of-type(2) {
+    flex-grow: 3;
+    text-align: center;
+}
+.controlItem:nth-of-type(3) {flex-grow: 0;}
+
+.searchControlsInput {
+    width: 70%;
+    height: 40px;
+    font-size: 22px;
+    border: 1px solid #e9e9e9;
+    text-align: center;
+}
+
+.searchAdvanced {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.searchAdvancedRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.searchAdvancedItem {
+    margin-right: 4px;
+    margin-bottom: 4px;
+    width: 20%;
+}
+
+.searchResults {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
+}
+
+.searchResultItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.searchResultItem:hover {
+    background-color: #dae6f0;
+}
+
+.searchResultItemDescription {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    width: 23vw;
+}
+
+.resultItemDescriptionHomepage {
+    font-size: 14px;
+    color: black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 1px;
+}
+
+.resultItemDescriptionText {
+    font-size: 11px;
+    text-align: left;
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+

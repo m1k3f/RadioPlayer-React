@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import styles from './SearchControls.module.css';
+
 export default class TagList extends Component  {
 
     renderTags = () => {
@@ -9,7 +11,7 @@ export default class TagList extends Component  {
             let tagArray = tagList.split(',');
             content = tagArray.map((tag, index) => {
                 return (
-                    <span key={index} className="searchResultItemTag">
+                    <span key={index} className={styles.searchResultItemTag}>
                         {tag}
                     </span>
                 );
@@ -21,7 +23,7 @@ export default class TagList extends Component  {
 
     render() {
         return (
-            <p className="searchResultItemTagList">
+            <p className={`${styles.searchResultItemTagList} ${styles.tagDescriptionText}`}>
                 {this.renderTags()}
             </p>
         );

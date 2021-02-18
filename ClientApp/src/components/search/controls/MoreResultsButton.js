@@ -1,5 +1,7 @@
 ﻿import React, { Component } from 'react';
 
+import styles from './SearchControls.module.css';
+
 export default class MoreResultsButton extends Component {
 
     state = {
@@ -37,7 +39,7 @@ export default class MoreResultsButton extends Component {
         }
         else {
             content = (
-                <button className="moreResultsButton" onClick={this.handleButtonClick}>
+                <button className={styles.moreResultsButton} onClick={this.handleButtonClick}>
                     More Results
                 </button>
             );
@@ -48,7 +50,7 @@ export default class MoreResultsButton extends Component {
 
     render() {        
         return (
-            <div className="moreResults">
+            <div className={styles.moreResults}>
                 {this.renderItem()}
             </div>
         );

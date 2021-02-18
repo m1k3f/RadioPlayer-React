@@ -1,8 +1,9 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../context/RadioContext';
-import SearchBar from './controls/SearchBar'
+import SearchBar from './SearchBar'
 import SearchResults from './SearchResults'
+import styles from './Search.module.css';
 
 export default class StationSearch extends Component {
 
@@ -132,7 +133,7 @@ export default class StationSearch extends Component {
 
     render() {
         return (
-            <section className="stationSearch">
+            <section className={styles.stationSearch}>
                 <SearchBar stationSearchCallback={this.handleSearchBarCallback} />
                 <SearchResults results={this.state.searchResults}
                                 stationSearchCallback={this.handleSearchResultsCallback} />

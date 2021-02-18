@@ -1,9 +1,10 @@
 ﻿import React, { Component } from 'react';
 
-import RadioContext from '../../context/RadioContext';
-import AdvancedSearchButton from './AdvancedSearchButton'
-import ClearSearchButton from './ClearSearchButton'
-import AdvancedSearchBars from '../AdvancedSearchBars'
+import RadioContext from '../context/RadioContext';
+import AdvancedSearchButton from './controls/AdvancedSearchButton'
+import ClearSearchButton from './controls/ClearSearchButton'
+import AdvancedSearchBars from './AdvancedSearchBars'
+import styles from './Search.module.css';
 
 export default class SearchBar extends Component {
 
@@ -88,21 +89,21 @@ export default class SearchBar extends Component {
         let content = null;
         if (this.state.showAdvanced) {
             content = (                
-                <div className="searchAdvanced">
-                    <div>
-                        <input type="text" placeholder="Country..." 
+                <div className={styles.searchAdvanced}>
+                    <div className={styles.searchAdvancedRow}>
+                        <input className={styles.searchAdvancedItem} type="text" placeholder="Country..." 
                                 onKeyUp={this.handleKeyUp} ref={el => this.searchCountry = el} />
-                        <input type="text" placeholder="State..." 
+                        <input className={styles.searchAdvancedItem} type="text" placeholder="State..." 
                                 onKeyUp={this.handleKeyUp} ref={el => this.searchState = el} />
-                        <input type="text" placeholder="Language..." 
+                        <input className={styles.searchAdvancedItem} type="text" placeholder="Language..." 
                                 onKeyUp={this.handleKeyUp} ref={el => this.searchLanguage = el} />
                     </div>
-                    <div>
-                        <input type="text" placeholder="Tag List..." 
+                    <div className={styles.searchAdvancedRow}>
+                        <input className={styles.searchAdvancedItem} type="text" placeholder="Tag List..." 
                                 onKeyUp={this.handleKeyUp}  ref={el => this.searchTagList = el} />
-                        <input type="text" placeholder="Codec..." 
+                        <input className={styles.searchAdvancedItem} type="text" placeholder="Codec..." 
                                 onKeyUp={this.handleKeyUp} ref={el => this.searchCodec = el} />
-                        <input type="text" placeholder="Kbps..." 
+                        <input className={styles.searchAdvancedItem} type="text" placeholder="Kbps..." 
                                 onKeyUp={this.handleKeyUp} ref={el => this.searchBitrate = el} />
                     </div>
                 </div>
@@ -118,24 +119,28 @@ export default class SearchBar extends Component {
                                 'fas fa-chevron-circle-down fa-lg';
 
         return (
-            <div className="searchControlsAdvanced">                    
-                <div className="searchControls">
-                    <div className="controlItem" />
-                    <div className="controlItem">
-                        <input ref={el => this.searchStationName = el} 
+            <div className={styles.searchControlsAdvanced}>                    
+                <div className={styles.searchControls}>
+                    <div className={styles.controlItem} />
+                    <div className={styles.controlItem}>
+                        <input className={styles.searchControlsInput} 
+                            ref={el => this.searchStationName = el} 
                             type="text" 
                             placeholder="Search by Station..."
                             onKeyUp={this.handleKeyUp} />                        
-                        <button onClick={this.handleSearchButtonClick}>
+                        <button className={styles.iconButton} 
+                                onClick={this.handleSearchButtonClick}>
                             <i className="fas fa-search fa-lg"></i>
                         </button>
-                        <button onClick={this.handleClearButtonClick}>
+                        <button className={styles.iconButton} 
+                                onClick={this.handleClearButtonClick}>
                             <i className="fas fa-times-circle fa-lg"></i>
                         </button>
                     </div>
                     {/* <AdvancedSearchButton /> */}
-                    <div className="controlItem">
-                        <button onClick={this.handleExpandButtonClick} style={{paddingLeft: '8px'}}>
+                    <div className={styles.controlItem}>
+                        <button className={styles.iconButton} onClick={this.handleExpandButtonClick} 
+                                style={{paddingLeft: '8px'}}>
                             <i className={expandButtonClass}></i>
                         </button>
                     </div>
