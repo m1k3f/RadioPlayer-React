@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Hls from 'hls.js';
 
 import RadioContext from '../context/RadioContext';
+import styles from './Stream.module.css';
 
 export default class Stream extends Component {
 
@@ -148,7 +149,7 @@ export default class Stream extends Component {
         // }
 
         return(
-            <section className="stream" style={streamStyle}>
+            <section className={styles.stream} style={streamStyle}>
                 <video ref={el => this.streamer = el} 
                         onPlay={this.handlePlay} />
             </section>
