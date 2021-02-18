@@ -2,6 +2,7 @@
 
 import RadioContext from '../context/RadioContext';
 import PlaylistStationItem from './PlaylistStationItem'
+import styles from './Playlist.module.css';
 
 export default class PlaylistStations extends Component {
 
@@ -35,14 +36,14 @@ export default class PlaylistStations extends Component {
         }
         else {
             content = (
-                <p className="emptyPlaylist fade-in">
+                <p className={`fade-in ${styles.emptyPlaylist}`}>
                     <i className="far fa-file fa-4x"></i>&nbsp;
                 </p>
             );
         }
 
         return (
-            <div className="playlistStations">
+            <div className={styles.playlistStations}>
                 {content}
             </div>
         );

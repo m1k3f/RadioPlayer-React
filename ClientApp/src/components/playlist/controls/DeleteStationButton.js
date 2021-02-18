@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../../context/RadioContext';
+import styles from './PlaylistControls.module.css';
 
 export default class DeleteStationButton extends Component {
 
@@ -13,7 +14,8 @@ export default class DeleteStationButton extends Component {
 
     render() {
         return (
-            <button onClick={this.handleButtonClick} className="iconButton" style={{color: 'red'}}>
+            <button className={`${styles.iconButton} ${styles.stationItemButton}`} 
+                    onClick={this.handleButtonClick} style={{color: 'red'}}>
                 <i className="fas fa-times"></i>
             </button>
         );

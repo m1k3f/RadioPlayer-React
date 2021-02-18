@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../../context/RadioContext';
+import styles from './PlaylistControls.module.css';
 
 export default class PlaylistClearButton extends Component {
 
@@ -35,7 +36,8 @@ export default class PlaylistClearButton extends Component {
         }
         else {
             content = (
-                <button onClick={this.handleButtonClick} className="iconButton" title="Delete Playlist">
+                <button className={styles.playlistHeaderButton} 
+                        onClick={this.handleButtonClick} title="Delete Playlist">
                     <i className="fas fa-trash fa-lg"></i>
                 </button>
             );

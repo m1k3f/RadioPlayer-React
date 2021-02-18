@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import RadioContext from '../../context/RadioContext';
+import styles from './PlaylistControls.module.css';
 
 export default class PlaylistImportButton extends Component {
 
@@ -176,7 +177,8 @@ export default class PlaylistImportButton extends Component {
         }
         else {
             content = (
-                <button className="iconButton" onClick={this.handleImportButtonClick} title="Upload Playlist">
+                <button className={styles.playlistHeaderButton} 
+                        onClick={this.handleImportButtonClick} title="Upload Playlist">
                     <i className="fas fa-file-upload fa-lg"></i>
                 </button> 
             );

@@ -6,11 +6,15 @@ export default class StationTypeImage extends Component {
         let content = null;
         let tags = (this.props.station.tags !== undefined) ? this.props.station.tags.split(",") : '';
 
+        let iconStyle = {
+            fontSize: '14px'
+        }
+
         if (tags.includes("video") || tags.includes("hls video")) {
-            content = <i className="fas fa-video"></i>
+            content = <i className="fas fa-video" style={iconStyle}></i>
         }
         else {
-            content = <i className="fas fa-headphones"></i>
+            content = <i className="fas fa-headphones" style={iconStyle}></i>
         }
 
         return (content);

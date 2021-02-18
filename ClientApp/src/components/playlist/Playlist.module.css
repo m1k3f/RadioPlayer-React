@@ -1,0 +1,65 @@
+.playlist {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;  
+    margin-bottom: 10px;
+}
+
+.playlistHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;    
+}
+
+.playlistHeaderItem {
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.playlistStations {
+    padding-right: 4px;
+    padding-left: 4px;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 20vh;
+}
+
+.emptyPlaylist {
+    text-align: center;
+    color: #e6e6e6;
+}
+
+.playlistStationItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+.playlistStationItem:hover {
+    background-color: #dae6f0;
+}
+
+.playlistStationItemText {
+    min-width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.stationItemControls {
+    min-width: 20px;
+    white-space: nowrap;
+}
+

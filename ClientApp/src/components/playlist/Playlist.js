@@ -1,7 +1,9 @@
 ﻿import React, { Component } from 'react';
+
 import RadioContext from '../context/RadioContext';
-import PlaylistHeader from './PlaylistHeader'
-import PlaylistStations from './PlaylistStations'
+import PlaylistHeader from './PlaylistHeader';
+import PlaylistStations from './PlaylistStations';
+import styles from './Playlist.module.css';
 
 export default class Playlist extends Component {
 
@@ -53,7 +55,7 @@ export default class Playlist extends Component {
         let playlistCount = (this.state.playlist != null) ? this.state.playlist.length : 0;
 
         return (
-            <section className="playlist">
+            <section className={styles.playlist}>
                 <PlaylistHeader playlistCount={playlistCount} />
                 <PlaylistStations playlistStations={this.state.playlist} />
             </section>

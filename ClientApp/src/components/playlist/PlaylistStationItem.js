@@ -2,8 +2,9 @@
 
 import RadioContext from '../context/RadioContext';
 import StationTypeImage from './controls/StationTypeImage';
-import StationHomepageLink from './controls/StationHomepageLink'
-import DeleteStationButton from './controls/DeleteStationButton'
+import StationHomepageLink from './controls/StationHomepageLink';
+import DeleteStationButton from './controls/DeleteStationButton';
+import styles from './Playlist.module.css';
 
 export default class PlaylistStationItem extends Component {
 
@@ -29,12 +30,13 @@ export default class PlaylistStationItem extends Component {
                             this.props.station.name;
 
         return (
-            <div className="playlistStationItem fade-in" style={selectedStyle}>
-                <p title={this.props.station.name} onClick={this.handleButtonClick}>
+            <div className={`fade-in ${styles.playlistStationItem}`} style={selectedStyle}>
+                <p className={styles.playlistStationItemText} title={this.props.station.name} 
+                    onClick={this.handleButtonClick}>
                     <StationTypeImage station={this.props.station} />&nbsp;&nbsp;
                     {stationName}
                 </p>
-                <div className="stationItemControls">                    
+                <div className={styles.stationItemControls}>
                     <StationHomepageLink station={this.props.station} />
                     <DeleteStationButton station={this.props.station} />
                 </div>
