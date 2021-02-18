@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../../context/RadioContext';
+import styles from './NavBarControls.module.css';
 
 export default class PlayButton extends Component {
 
@@ -50,7 +51,7 @@ export default class PlayButton extends Component {
         }
 
         return (
-            <button onClick={this.handleButtonClick}>
+            <button className={styles.headerControlsButton} onClick={this.handleButtonClick}>
                 {buttonImage}
             </button>
         );

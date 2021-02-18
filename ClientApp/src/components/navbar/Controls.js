@@ -6,6 +6,7 @@ import PlayButton from './controls/PlayButton'
 import NextButton from './controls/NextButton'
 import VolumeSlider from './controls/VolumeSlider'
 import StationImage from './controls/StationImage';
+import styles from './NavBar.module.css';
 
 export default class Controls extends Component {
 
@@ -18,9 +19,9 @@ export default class Controls extends Component {
 
     render() {
         return (
-            <section>
+            <section className={styles.headerCenter}>
                 <div style={{width:'50px',height:'50px'}} />
-                <div className="headerControls">
+                <div className={styles.headerControls}>
                     <div>
                         <PreviousButton controlsCallback={this.handleButtonCallback} />
                         <PlayButton />

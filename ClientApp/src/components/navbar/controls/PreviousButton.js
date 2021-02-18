@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../../context/RadioContext';
+import styles from './NavBarControls.module.css';
 
 export default class PreviousButton extends Component {
 
@@ -23,7 +24,7 @@ export default class PreviousButton extends Component {
 
     render() {
         return (
-            <button onClick={this.handleButtonClick}>
+            <button className={styles.headerControlsButton} onClick={this.handleButtonClick}>
                 <i className="fas fa-step-backward"></i>
             </button>
         );

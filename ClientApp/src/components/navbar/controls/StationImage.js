@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../../context/RadioContext';
+import styles from './NavBarControls.module.css';
 
 export default class StationImage extends Component {
 
@@ -110,7 +111,7 @@ export default class StationImage extends Component {
         return (
             <React.Fragment>
                 {/* {this.renderImage()} */}
-                <img className="stationImage" style={imgStyle} src={this.state.imageSrc} alt=""></img>
+                <img className={styles.stationImage} style={imgStyle} src={this.state.imageSrc} alt=""></img>
             </React.Fragment>
         );
     }
