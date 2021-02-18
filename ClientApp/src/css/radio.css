@@ -5,11 +5,7 @@
     cursor: pointer;
 }
 
-.radioApp {
-    
-}
-
-header {
+/* header {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -65,9 +61,9 @@ header a {
 
 header > a > i {
     color: black;
-}
+} */
 
-main {
+/* main {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -113,10 +109,9 @@ main .playlist .playlistHeader button:hover {
 main .playlist .playlistHeader div > * {
     padding-left: 6px;
     padding-right: 6px;
-}
+} */
 
-main .playlist .playlistStations {
-    /* overflow-y: scroll; */
+/* main .playlist .playlistStations {
     padding-right: 4px;
     padding-left: 4px;
     padding-top: 2px;
@@ -129,8 +124,6 @@ main .playlist .playlistStations {
 }
 
 .emptyPlaylist {
-    /* font-size: 11px;
-    font-style: italic; */
     text-align: center;
     color: #e6e6e6;
 }
@@ -150,16 +143,6 @@ main .playlist .playlistStations .playlistStationItem * {
     font-size: 14px;
 }
 
-/* main .playlist .playlistStations .playlistStationItem button {
-    min-width: 100%;
-} */
-
-/* main .playlist .playlistStations .playlistStationItem a {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-} */
-
 main .playlist .playlistStations .playlistStationItem p {
     min-width: 85%;
     white-space: nowrap;
@@ -178,11 +161,9 @@ main .playlist .playlistStations .playlistStationItem .stationItemControls {
 main .playlist .playlistStations .playlistStationItem .stationItemControls > * {
     padding: 4px;
     margin-right: 4px;
-}
+} */
 
-main .stationSearch {
-    /* position: fixed;
-    top: 40vh; */
+/* main .stationSearch {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -251,14 +232,13 @@ main .stationSearch .searchControlsAdvanced .searchAdvanced div > * {
     margin-right: 4px;
     margin-bottom: 4px;
     width: 20%;
-}
+} */
 
-main .stationSearch .searchResults {
+/* main .stationSearch .searchResults {
     display: flex;
     flex-direction: column;
     justify-content: center;
     overflow: auto;
-    /* width: 100%; */
 }
 
 main .stationSearch .searchResults .searchResultItem {
@@ -266,9 +246,7 @@ main .stationSearch .searchResults .searchResultItem {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /* border-bottom: 1px solid black; */
     margin-bottom: 6px;
-    /* width: 70%; */
 }
 
 main .stationSearch .searchResults .searchResultItem:hover {
@@ -299,8 +277,6 @@ main .stationSearch .searchResults .searchResultItem .searchResultItemDescriptio
 main .stationSearch .searchResults .searchResultItem .searchResultItemDescription > a {
     font-size: 14px;
     color: black;
-    /* display: inline-block; */
-    /* width: 20vw; */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -342,4 +318,4 @@ main .stationSearch .searchResults .moreResults {
 main .stationSearch .searchResults .moreResultsButton {
     background-color: #edf3f8;
     padding: 6px;
-}
+} */
