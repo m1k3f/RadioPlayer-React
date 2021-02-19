@@ -20,7 +20,7 @@ export default class PlaylistExportButton extends Component {
             stationList: radioPlaylist.playlist
         }
 
-        let request = new Request('api/radio/downloadPlaylistFile', {
+        let request = new Request(process.env.REACT_APP_APIDOWNLOADPLAYLIST, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

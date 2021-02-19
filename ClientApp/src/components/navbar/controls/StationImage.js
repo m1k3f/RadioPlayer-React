@@ -71,7 +71,7 @@ export default class StationImage extends Component {
             imageUrl: station.favicon
         }
 
-        let request = new Request('api/radio/getStationImage', {
+        let request = new Request(process.env.REACT_APP_APISTATIONIMAGE, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -88,17 +88,6 @@ export default class StationImage extends Component {
             return null;
         }
     }
-
-    // renderImage = () => {
-    //     let content = null;
-    //     if (this.state.imageSrc != null && this.state.imageSrc.length > 0 && !this.state.imageError) {
-    //         content = (
-    //             <img className="stationImage" src={this.state.imageSrc} alt=""></img>
-    //         );
-    //     }
-
-    //     return (content);
-    // }
 
     render() {
         let imgStyle = {};

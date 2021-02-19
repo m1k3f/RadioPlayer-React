@@ -125,7 +125,7 @@ export default class Stream extends Component {
             stationId: stationId
         }
 
-        let request = new Request('api/radio/countStation', {
+        let request = new Request(process.env.REACT_APP_APICOUNTSTATION, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

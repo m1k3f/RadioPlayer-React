@@ -111,7 +111,7 @@ export default class StationSearch extends Component {
     }
 
     getSearchResults = async (searchCriteria) => {
-        let request = new Request('api/radio/searchStations', {
+        let request = new Request(process.env.REACT_APP_APISEARCH, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'

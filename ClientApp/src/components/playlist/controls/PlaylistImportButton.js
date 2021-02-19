@@ -128,7 +128,7 @@ export default class PlaylistImportButton extends Component {
             url: stationUrl
         }
 
-        let request = new Request('api/radio/searchStationByUrl', {
+        let request = new Request(process.env.REACT_APP_APISEARCHBYURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
@@ -150,7 +150,7 @@ export default class PlaylistImportButton extends Component {
             name: stationName
         }
 
-        let request = new Request('api/radio/searchStations', {
+        let request = new Request(process.env.REACT_APP_APISEARCH, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8'
