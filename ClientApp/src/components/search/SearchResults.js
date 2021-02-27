@@ -23,13 +23,15 @@ export default class SearchResults extends Component {
 
     isResultItemDuplicate = (resultItem) => {
         let isDuplicate = false;
-        const { radioPlaylist } = this.context;
-        let selectedIndex = radioPlaylist.playlist.findIndex((station) => 
-            station.stationuuid === resultItem.stationuuid
-        );
+        if (resultItem !== null) {
+            const { radioPlaylist } = this.context;
+            let selectedIndex = radioPlaylist.playlist.findIndex((station) => 
+                station.stationuuid === resultItem.stationuuid
+            );
 
-        if (selectedIndex > -1) {
-            isDuplicate = true;
+            if (selectedIndex > -1) {
+                isDuplicate = true;
+            }
         }
 
         return isDuplicate;
