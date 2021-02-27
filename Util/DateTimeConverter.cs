@@ -9,7 +9,15 @@ namespace RadioPlayer.Util
     {
         public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return DateTime.ParseExact(reader.GetString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            var field = reader.GetString();
+            if (!string.IsNullOrEmpty(field))
+            {
+                return DateTime.ParseExact(reader.GetString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                return DateTime.Now;
+            }
         }
 
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
