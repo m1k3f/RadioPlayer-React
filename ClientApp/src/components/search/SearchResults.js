@@ -21,6 +21,20 @@ export default class SearchResults extends Component {
         this.props.stationSearchCallback();
     }
 
+    isResultItemDuplicate = (resultItem) => {
+        let isDuplicate = false;
+        const { radioPlaylist } = this.context;
+        let selectedIndex = radioPlaylist.playlist.findIndex((station) => 
+            station.stationuuid === resultItem.stationuuid
+        );
+
+        if (selectedIndex > -1) {
+            isDuplicate = true;
+        }
+
+        return isDuplicate;
+    }
+
     renderSearchResultsDiv = () => {
         const { searchResultsLoading } = this.context;
         if (searchResultsLoading) {
@@ -37,6 +51,7 @@ export default class SearchResults extends Component {
         if (searchResults != null && searchResults.results !== null && searchResults.results.length > 0) {            
             let itemCount = 0;
             content = searchResults.results.map((item) => {
+                let isDuplicate = this.isResultItemDuplicate(item);
                 itemCount++;
                 let limitReached = false;
                 if (itemCount === searchResults.limit || 
@@ -45,7 +60,8 @@ export default class SearchResults extends Component {
                 }
 
                 return (
-                    <SearchResultItem key={itemCount} resultItem={item} limitReached={limitReached} />
+                    <SearchResultItem key={itemCount} resultItem={item} duplicate={isDuplicate} 
+                                    limitReached={limitReached} />
                 );
                 
             });

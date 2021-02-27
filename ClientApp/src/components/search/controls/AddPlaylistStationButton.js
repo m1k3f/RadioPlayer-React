@@ -11,6 +11,10 @@ export default class AddPlaylistStationButton extends Component {
 
     static contextType = RadioContext;
 
+    static getDerivedStateFromProps(props, state) {
+        return {stationAdded: props.added}
+    }
+
     handleButtonClick = (e) => {
         const { addPlaylistStation } = this.context;
         addPlaylistStation(this.props.stationItem);
@@ -34,14 +38,14 @@ export default class AddPlaylistStationButton extends Component {
             );
         }
         else {
-            let itemStyle = {
+            let itemStyle = {                
                 padding: 0,
                 margin: 0
             };
 
             content = (
                 <button className={styles.iconButton} onClick={this.handleButtonClick} style={itemStyle}>
-                    <i className="fas fa-plus-circle fa-2x"></i>
+                    <i className="fas fa-plus-circle fa-2x" style={{fontSize:'24px'}}></i>
                 </button>
             );
         }

@@ -48,7 +48,7 @@ export default class SearchResultItem extends Component {
 
         return (
             <div className={styles.searchResultItem} style={resultItemStyle}>
-                <AddPlaylistStationButton stationItem={resultItem} />
+                <AddPlaylistStationButton stationItem={resultItem} added={this.props.duplicate} />
                 <div className={styles.searchResultItemDescription}>
                     <a className={styles.resultItemDescriptionHomepage} href={resultItem.homepage} 
                         title={resultItem.name} target="_blank" rel="noopener noreferrer">
