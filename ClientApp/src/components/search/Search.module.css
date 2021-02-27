@@ -40,7 +40,15 @@
     flex-grow: 3;
     text-align: center;
 }
-.controlItem:nth-of-type(3) {flex-grow: 0;}
+
+.controlItem:nth-of-type(2) > * {
+    margin-right: 2px;
+}
+
+.controlItem:nth-of-type(3) {
+    flex-grow: 0;
+    margin-top: 5px;
+}
 
 .searchControlsInput {
     width: 70%;
