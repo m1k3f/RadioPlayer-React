@@ -13,7 +13,8 @@ class RadioProvider extends Component {
                 station: null
             },
             radioPlaylist: this.getPlaylistStorage(),
-            searchResultsLoading: false
+            searchResultsLoading: false,
+            stationPlayLoading: false
         };
     }
 
@@ -113,12 +114,19 @@ class RadioProvider extends Component {
         });
     }
 
+    setStationPlayLoading = (isLoading) => {
+        this.setState({
+            stationPlayLoading: isLoading
+        });
+    }
+
     render() {
         const { children } = this.props;
-        const { selectedStation, radioPlaylist, searchResultsLoading } = this.state;
+        const { selectedStation, radioPlaylist, searchResultsLoading, stationPlayLoading } = this.state;
         const { 
                 setStation, removePlaylist, setPlaylist, addPlaylistStation, 
-                updatePlaylistStation, removePlaylistStation, setSearchResultsLoading 
+                updatePlaylistStation, removePlaylistStation, setSearchResultsLoading,
+                setStationPlayLoading 
               } = this;
 
         return(
@@ -134,7 +142,9 @@ class RadioProvider extends Component {
                         updatePlaylistStation,
                         removePlaylistStation,
                         searchResultsLoading,
-                        setSearchResultsLoading
+                        setSearchResultsLoading,
+                        stationPlayLoading,
+                        setStationPlayLoading
                     }
                 }
                 >

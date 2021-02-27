@@ -6,7 +6,7 @@ import styles from './NavBarControls.module.css';
 export default class PlayButton extends Component {
 
     state = {
-        showPlayButton: false
+        showPauseButton: false
     }
 
     static contextType = RadioContext;
@@ -18,35 +18,45 @@ export default class PlayButton extends Component {
     componentDidUpdate() {
         const { selectedStation } = this.context;
 
-        if (!this.state.showPlayButton && selectedStation.play && selectedStation.firstPlay) {
+        if (!this.state.showPauseButton && selectedStation.play && selectedStation.firstPlay) {
             //station needs to play and it is first play
             this.setState({
-                showPlayButton: true
+                showPauseButton: true
+            });
+        }
+        else if (this.state.showPauseButton && !selectedStation.play) {
+            //station stopped playing
+            this.setState({
+                showPauseButton: false
             });
         }
     }
 
     handleButtonClick = (e) => {
         const { selectedStation, setStation } = this.context;
-        if (this.state.showPlayButton) {  
+        if (this.state.showPauseButton) {  
             setStation(selectedStation.station, false, false);
             
             this.setState({
-                showPlayButton: false
+                showPauseButton: false
             });            
         }
         else {
             setStation(selectedStation.station, true, false);
 
             this.setState({
-                showPlayButton: true
+                showPauseButton: true
             });            
         }
     }
 
     render() {
+        const { stationPlayLoading } = this.context;
         let buttonImage = <i className="fas fa-play-circle fa-lg"></i>;
-        if (this.state.showPlayButton) {
+        if (stationPlayLoading) {
+            buttonImage = <i className="fas fa-spinner fa-spin"></i>;
+        }
+        else if (this.state.showPauseButton) {
             buttonImage = <i className="fas fa-pause-circle fa-lg"></i>;
         }
 

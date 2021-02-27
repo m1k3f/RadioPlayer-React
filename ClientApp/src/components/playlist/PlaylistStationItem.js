@@ -13,7 +13,8 @@ export default class PlaylistStationItem extends Component {
     handleButtonClick = async (e) => {
         let stationItem = this.props.station;
 
-        const { setStation } = this.context;
+        const { setStation, setStationPlayLoading } = this.context;
+        setStationPlayLoading(true);
         setStation(stationItem, true, true);
     }
 

@@ -65,9 +65,12 @@ export default class Stream extends Component {
     }
 
     playBasicStream = (stationUrl) => {
-        this.streamer.setAttribute('src', stationUrl);
-        this.streamer.load();
-        this.streamer.play();
+        this.streamer.src = stationUrl;
+        if (this.streamer.error === null) {
+            this.streamer.load();
+            this.streamer.volume = '0.25';
+            this.streamer.play();
+        }
     }
 
     playHlsStream = (stationUrl) => {
@@ -92,6 +95,7 @@ export default class Stream extends Component {
 
         this.hlsJs.on(Hls.Events.MANIFEST_PARSED, () => {            
             this.hlsJs.startLoad();
+            this.streamer.volume = '0.25';
             this.streamer.play();
         });
 
@@ -103,9 +107,6 @@ export default class Stream extends Component {
     pauseStream = () => {
         if (this.hlsJs !== null) {
             this.hlsJs.stopLoad();
-            // this.hlsJs.detachMedia();
-            // this.hlsJs.destroy(); 
-            // this.hlsJs = null;
         }
 
         this.streamer.pause();
@@ -114,9 +115,9 @@ export default class Stream extends Component {
     }
 
     handlePlay = (e) => {
-        this.streamer.volume = '0.25';
+        const { selectedStation, setStationPlayLoading } = this.context;
+        setStationPlayLoading(false);
 
-        const { selectedStation } = this.context;
         this.countStation(selectedStation.station.stationuuid);
     }
 
@@ -136,22 +137,24 @@ export default class Stream extends Component {
         fetch(request);
     }
 
+    handleError = () => {
+        this.pauseStream();
+
+        const { setStation, setStationPlayLoading } = this.context;
+        setStationPlayLoading(false);
+        setStation(null, false, false);
+    }
+
     render() {        
         let streamStyle = {
             width: 0,
             height: 0
         };
-        // if (this.state.streamSrc != null) {
-        //     streamStyle = {
-        //         width: '200px',
-        //         height: '200px'
-        //     };
-        // }
 
         return(
             <section className={styles.stream} style={streamStyle}>
                 <video ref={el => this.streamer = el} 
-                        onPlay={this.handlePlay} />
+                        onPlaying={this.handlePlay} onError={this.handleError} />
             </section>
         );
     }
