@@ -8,16 +8,6 @@ export default class MoreResultsButton extends Component {
         isLoading: false
     }
 
-    // componentDidUpdate() {
-    //     if (this.state.isLoading) {
-    //         this.props.searchResultsCallback();
-
-    //         this.setState({
-    //             isLoading: false
-    //         });
-    //     }
-    // }
-
     handleButtonClick = async (e) => {
         this.setState({
             isLoading: true

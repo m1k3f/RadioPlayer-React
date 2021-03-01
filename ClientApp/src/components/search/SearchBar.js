@@ -1,9 +1,6 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../context/RadioContext';
-import AdvancedSearchButton from './controls/AdvancedSearchButton'
-import ClearSearchButton from './controls/ClearSearchButton'
-import AdvancedSearchBars from './AdvancedSearchBars'
 import styles from './Search.module.css';
 
 export default class SearchBar extends Component {
@@ -126,26 +123,24 @@ export default class SearchBar extends Component {
                         <input className={styles.searchControlsInput} 
                             ref={el => this.searchStationName = el} 
                             type="text" 
-                            placeholder="Search by Station..."
+                            placeholder="Search by Station Name..."
                             onKeyUp={this.handleKeyUp} />                        
-                        <button className={styles.iconButton} 
+                        <button className={styles.iconButton} title="Search"
                                 onClick={this.handleSearchButtonClick}>
                             <i className="fas fa-search fa-lg"></i>
                         </button>
-                        <button className={styles.iconButton} 
+                        <button className={styles.iconButton} title="Clear Search"
                                 onClick={this.handleClearButtonClick}>
                             <i className="fas fa-times-circle fa-lg"></i>
                         </button>
                     </div>
-                    {/* <AdvancedSearchButton /> */}
-                    <div className={styles.controlItem}>
+                    <div className={styles.controlItem} title="Advanced Search Options">
                         <button className={styles.iconButton} onClick={this.handleExpandButtonClick} 
                                 style={{paddingLeft: '8px'}}>
                             <i className={expandButtonClass}></i>
                         </button>
                     </div>
                 </div>
-                {/* <AdvancedSearchBars /> */}
                 {this.renderAdvanced()}
             </div>
         );

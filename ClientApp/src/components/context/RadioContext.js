@@ -85,6 +85,9 @@ class RadioProvider extends Component {
             if (station.stationuuid === oldStationObject.stationuuid) {
                 return true;
             }
+            else {
+                return false;
+            }
         });
 
         if (index > -1) {
@@ -98,6 +101,9 @@ class RadioProvider extends Component {
         let index = radioPlaylist.playlist.findIndex((station) => {
             if (station.stationuuid === removedStation.stationuuid) {
                 return true;
+            }
+            else {
+                return false;
             }
         });
 

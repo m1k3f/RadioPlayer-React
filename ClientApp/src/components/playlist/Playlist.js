@@ -45,6 +45,9 @@ export default class Playlist extends Component {
                     changed = true;
                     return false;
                 }
+                else {
+                    return true;
+                }
             });
         }
 

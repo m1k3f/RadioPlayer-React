@@ -1,10 +1,9 @@
 ﻿import React, { Component } from 'react';
 
 import RadioContext from '../context/RadioContext';
-import PreviousButton from './controls/PreviousButton'
-import PlayButton from './controls/PlayButton'
-import NextButton from './controls/NextButton'
-import VolumeSlider from './controls/VolumeSlider'
+import PreviousButton from './controls/PreviousButton';
+import PlayButton from './controls/PlayButton';
+import NextButton from './controls/NextButton';
 import StationImage from './controls/StationImage';
 import styles from './NavBar.module.css';
 

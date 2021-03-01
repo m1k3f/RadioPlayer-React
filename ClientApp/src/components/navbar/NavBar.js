@@ -1,6 +1,5 @@
 ﻿import React, { Component } from 'react';
 
-import HeaderTitle from './controls/HeaderTitle';
 import Controls from './Controls';
 import SourceControlLink from './controls/SourceControlLink';
 import styles from './NavBar.module.css';
