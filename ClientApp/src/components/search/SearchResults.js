@@ -17,8 +17,8 @@ export default class SearchResults extends Component {
         return {searchResults: props.results};
     }
 
-    handleMoreResultsCallback = () => {
-        this.props.stationSearchCallback();
+    handleMoreResultsCallback = async () => {
+        await this.props.stationSearchCallback();
     }
 
     isResultItemDuplicate = (resultItem) => {
@@ -54,16 +54,10 @@ export default class SearchResults extends Component {
             let itemCount = 0;
             content = searchResults.results.map((item) => {
                 let isDuplicate = this.isResultItemDuplicate(item);
-                itemCount++;
-                let limitReached = false;
-                if (itemCount === searchResults.limit || 
-                    (itemCount > searchResults.limit && itemCount % searchResults.limit === 0)) {
-                    limitReached = true;
-                }
+                itemCount++;                
 
                 return (
-                    <SearchResultItem key={itemCount} resultItem={item} duplicate={isDuplicate} 
-                                    limitReached={limitReached} />
+                    <SearchResultItem key={itemCount} resultItem={item} duplicate={isDuplicate} />                    
                 );
                 
             });
@@ -71,7 +65,9 @@ export default class SearchResults extends Component {
 
         return (
             <div className={styles.searchResults}>
-                {content}
+                <div className={styles.searchResultItems}>
+                    {content}
+                </div>
                 {this.renderMoreResultsButton(content)}
             </div>
         );
@@ -93,7 +89,9 @@ export default class SearchResults extends Component {
 
     renderSpinner = () => {
         return (
-            <i className="fas fa-spinner fa-spin fa-lg"></i>
+            <div style={{marginTop:'20px'}}>
+                <i className="fas fa-spinner fa-spin fa-lg"></i>
+            </div>
         );
     }
 

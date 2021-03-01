@@ -19,13 +19,13 @@ export default class SearchResultItem extends Component {
             );
         }
         else {
-            let warningTitle = 'This stream has been experiencing problems.';
+            let warningTitle = 'This stream has been experiencing problems and may not play correctly.';
             let warningStyle = {
                 color: 'red'
             }
             content = (
                 <p className={styles.resultItemDescriptionText}>
-                    <i className="fas fa-exclamation-triangle" style={warningStyle} title={warningTitle}></i>&nbsp;
+                    <i className="fas fa-exclamation-triangle" style={warningStyle} title={warningTitle}></i>&nbsp;&nbsp;
                     {resultItem.codec}&nbsp;
                     {bitrate}
                 </p>
@@ -39,20 +39,13 @@ export default class SearchResultItem extends Component {
         let resultItem = this.props.resultItem;        
         let state = (resultItem.state.length > 0) ? `${resultItem.state} - ` : '';
 
-        let resultItemStyle = {};
-        if (this.props.limitReached) {
-            resultItemStyle = {
-                borderBottom: '1px solid black'
-            }
-        }
-
         return (
-            <div className={styles.searchResultItem} style={resultItemStyle}>
+            <div className={styles.searchResultItem}>
                 <AddPlaylistStationButton stationItem={resultItem} added={this.props.duplicate} />
                 <div className={styles.searchResultItemDescription}>
                     <a className={styles.resultItemDescriptionHomepage} href={resultItem.homepage} 
                         title={resultItem.name} target="_blank" rel="noopener noreferrer">
-                        {resultItem.name}
+                        <p className={styles.descriptionHomepageText}>{resultItem.name}</p>
                     </a>
                     <TagList tagList={resultItem.tags} />
                     <p className={styles.resultItemDescriptionText}>{state}{resultItem.country}</p>

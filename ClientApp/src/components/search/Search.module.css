@@ -80,7 +80,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: auto;
+    margin-bottom: 10px;
+    width: 50%;
+    /* border: 1px solid black; */
+}
+
+.searchResultItems {
+    padding-left: 20%;
+    padding-right: 8px;
 }
 
 .searchResultItem {
@@ -88,11 +95,15 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
 }
 
-.searchResultItem:hover {
+/* .searchResultItem:hover {
     background-color: #dae6f0;
+} */
+
+.searchResultItem > div:nth-child(2) {
+    flex: 0 0 auto;
 }
 
 .searchResultItemDescription {
@@ -102,13 +113,17 @@
     width: 23vw;
 }
 
-.resultItemDescriptionHomepage {
+.resultItemDescriptionHomepage {    
+    margin-bottom: 1px;
+}
+
+.descriptionHomepageText {
     font-size: 14px;
     color: black;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 1px;
+    margin: 0;
 }
 
 .resultItemDescriptionText {

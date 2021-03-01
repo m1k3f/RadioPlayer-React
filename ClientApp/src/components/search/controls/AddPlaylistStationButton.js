@@ -34,7 +34,7 @@ export default class AddPlaylistStationButton extends Component {
                 margin: 0
             }
             content = (
-                <i className="fas fa-check-circle fa-2x" style={selectedStyle}></i>
+                <i className="fas fa-check-circle fa-2x" style={selectedStyle} title="Added to Playlist"></i>
             );
         }
         else {

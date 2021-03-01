@@ -134,9 +134,9 @@ export default class StationSearch extends Component {
     render() {
         return (
             <section className={styles.stationSearch}>
-                <SearchBar stationSearchCallback={this.handleSearchBarCallback} />
+                <SearchBar stationSearchCallback={this.handleSearchBarCallback} />                
                 <SearchResults results={this.state.searchResults}
-                                stationSearchCallback={this.handleSearchResultsCallback} />
+                                stationSearchCallback={this.handleSearchResultsCallback} />                
             </section>
         );
     }

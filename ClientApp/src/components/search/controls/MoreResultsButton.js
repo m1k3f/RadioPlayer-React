@@ -18,12 +18,12 @@ export default class MoreResultsButton extends Component {
     //     }
     // }
 
-    handleButtonClick = (e) => {
+    handleButtonClick = async (e) => {
         this.setState({
             isLoading: true
         });
 
-        this.props.searchResultsCallback();
+        await this.props.searchResultsCallback();
 
         this.setState({
             isLoading: false
@@ -34,14 +34,17 @@ export default class MoreResultsButton extends Component {
         let content = null;
         if (this.state.isLoading) {
             content = (
-                <i className="fas fa-spinner fa-spin"></i>
+                <i className="fas fa-spinner fa-spin" style={{fontSize:'20px',marginTop:'10px'}}></i>
             );
         }
         else {
             content = (
-                <button className={styles.moreResultsButton} onClick={this.handleButtonClick}>
-                    More Results
-                </button>
+                <React.Fragment>
+                    <hr />
+                    <button className={styles.moreResultsButton} onClick={this.handleButtonClick}>
+                        More Results
+                    </button>
+                </React.Fragment>
             );
         }
 
