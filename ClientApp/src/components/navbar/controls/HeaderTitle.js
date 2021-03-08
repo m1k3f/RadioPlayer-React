@@ -7,8 +7,8 @@ export default class HeaderTitle extends Component {
     render() {
         let iconStyle = {
             color: 'black',
-            width: '40px',
-            height: '40px'
+            width: '45px',
+            height: '45px'
         };
 
         return(
