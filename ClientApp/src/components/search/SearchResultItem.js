@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
 import AddPlaylistStationButton from './controls/AddPlaylistStationButton'
 import TagList from './controls/TagList';
@@ -21,11 +22,14 @@ export default class SearchResultItem extends Component {
         else {
             let warningTitle = 'This stream has been experiencing problems and may not play correctly.';
             let warningStyle = {
-                color: 'red'
+                color: 'red',
+                width: '14px',
+                height: '14px'
             }
             content = (
                 <p className={styles.resultItemDescriptionText}>
-                    <i className="fas fa-exclamation-triangle" style={warningStyle} title={warningTitle}></i>&nbsp;&nbsp;
+                    {/* <i className="fas fa-exclamation-triangle" style={warningStyle} title={warningTitle}></i>&nbsp;&nbsp; */}
+                    <FaExclamationTriangle style={warningStyle} title={warningTitle} />&nbsp;&nbsp;
                     {resultItem.codec}&nbsp;
                     {bitrate}
                 </p>

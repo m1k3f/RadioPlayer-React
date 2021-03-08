@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { FaChevronDown, FaChevronUp, FaSearch, FaTimesCircle } from 'react-icons/fa';
 
 import RadioContext from '../context/RadioContext';
 import styles from './Search.module.css';
@@ -111,9 +112,14 @@ export default class SearchBar extends Component {
     }
 
     render() {
-        let expandButtonClass = (this.state.showAdvanced) ? 
-                                'fas fa-chevron-circle-up fa-lg' : 
-                                'fas fa-chevron-circle-down fa-lg';
+        let iconStyle = {
+            width: '18px',
+            height: '18px'
+        };
+
+        let advancedIcon = (this.state.showAdvanced) ?
+                                <FaChevronUp style={iconStyle} /> :
+                                <FaChevronDown style={iconStyle} />;
 
         return (
             <div className={styles.searchControlsAdvanced}>                    
@@ -127,17 +133,17 @@ export default class SearchBar extends Component {
                             onKeyUp={this.handleKeyUp} />                        
                         <button className={styles.iconButton} title="Search"
                                 onClick={this.handleSearchButtonClick}>
-                            <i className="fas fa-search fa-lg"></i>
+                            <FaSearch style={iconStyle} />
                         </button>
                         <button className={styles.iconButton} title="Clear Search"
                                 onClick={this.handleClearButtonClick}>
-                            <i className="fas fa-times-circle fa-lg"></i>
+                            <FaTimesCircle style={iconStyle} />
                         </button>
                     </div>
                     <div className={styles.controlItem} title="Advanced Search Options">
                         <button className={styles.iconButton} onClick={this.handleExpandButtonClick} 
-                                style={{paddingLeft: '8px'}}>
-                            <i className={expandButtonClass}></i>
+                                style={{paddingLeft: '8px', paddingRight: '10px'}}>
+                            {advancedIcon}
                         </button>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { FaCheckCircle, FaPlusCircle } from 'react-icons/fa';
 
 import RadioContext from '../../context/RadioContext';
 import styles from './SearchControls.module.css';
@@ -29,12 +30,13 @@ export default class AddPlaylistStationButton extends Component {
         if (this.state.stationAdded) {
             let selectedStyle = {
                 color: 'green',
-                fontSize: '24px',
+                width: '24px',
+                height: '24px',
                 padding: 0,
                 margin: 0
             }
             content = (
-                <i className="fas fa-check-circle fa-2x" style={selectedStyle} title="Added to Playlist"></i>
+                <FaCheckCircle style={selectedStyle} title="Added to Playlist" />
             );
         }
         else {
@@ -43,9 +45,14 @@ export default class AddPlaylistStationButton extends Component {
                 margin: 0
             };
 
+            let iconStyle = {
+                width: '24px',
+                height: '24px'
+            };
+
             content = (
                 <button className={styles.iconButton} onClick={this.handleButtonClick} style={itemStyle}>
-                    <i className="fas fa-plus-circle fa-2x" style={{fontSize:'24px'}}></i>
+                    <FaPlusCircle style={iconStyle} />
                 </button>
             );
         }

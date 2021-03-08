@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 
 import styles from './SearchControls.module.css';
 
@@ -23,8 +24,17 @@ export default class MoreResultsButton extends Component {
     renderItem = () => {
         let content = null;
         if (this.state.isLoading) {
+            let iconStyle = {
+                marginTop:'10px',
+                width: '20px',
+                height: '20px'
+            };
+
             content = (
-                <i className="fas fa-spinner fa-spin" style={{fontSize:'20px',marginTop:'10px'}}></i>
+                <React.Fragment>
+                    <hr />
+                    <FaSpinner style={iconStyle} className="spin" />
+                </React.Fragment>
             );
         }
         else {

@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 
 import RadioContext from '../context/RadioContext';
 import SearchResultItem from './SearchResultItem'
@@ -88,9 +89,14 @@ export default class SearchResults extends Component {
     }
 
     renderSpinner = () => {
+        let iconStyle = {
+            width: '25px',
+            height: '25px'
+        };
+
         return (
             <div style={{marginTop:'20px'}}>
-                <i className="fas fa-spinner fa-spin fa-lg"></i>
+                <FaSpinner style={iconStyle} className="spin" />
             </div>
         );
     }
