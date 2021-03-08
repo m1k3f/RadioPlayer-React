@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { FaPlayCircle, FaPauseCircle, FaSpinner } from 'react-icons/fa';
 
 import RadioContext from '../../context/RadioContext';
 import styles from './NavBarControls.module.css';
@@ -10,10 +11,6 @@ export default class PlayButton extends Component {
     }
 
     static contextType = RadioContext;
-
-    componentDidMount() {
-        //video always stopped?
-    }
 
     componentDidUpdate() {
         const { selectedStation } = this.context;
@@ -52,12 +49,17 @@ export default class PlayButton extends Component {
 
     render() {
         const { stationPlayLoading } = this.context;
-        let buttonImage = <i className="fas fa-play-circle fa-lg"></i>;
+        let iconStyle = {
+            width: '40px',
+            height: '40px'
+        };
+
+        let buttonImage = <FaPlayCircle style={iconStyle} />
         if (stationPlayLoading) {
-            buttonImage = <i className="fas fa-spinner fa-spin"></i>;
+            buttonImage = <FaSpinner style={iconStyle} className="spin" />
         }
         else if (this.state.showPauseButton) {
-            buttonImage = <i className="fas fa-pause-circle fa-lg"></i>;
+            buttonImage = <FaPauseCircle style={iconStyle} />
         }
 
         return (

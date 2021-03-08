@@ -11,7 +11,10 @@
     justify-content: center;
     align-items: center;
     min-height: 12vh;
-    background-image: linear-gradient(#e6e6e6, #f2f2f2, #ffffff);    
+    background-image: linear-gradient(#e6e6e6, #f2f2f2, #fdfdfd);
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 .headerCenter {
@@ -25,4 +28,10 @@
     align-items: center;
     margin-right: 30px;
     margin-left: 30px;
+}
+
+.headerControlsButtons {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
 }

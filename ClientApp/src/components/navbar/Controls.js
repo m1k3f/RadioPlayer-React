@@ -21,7 +21,7 @@ export default class Controls extends Component {
             <section className={styles.headerCenter}>
                 <div style={{width:'50px',height:'50px'}} />
                 <div className={styles.headerControls}>
-                    <div>
+                    <div className={styles.headerControlsButtons}>
                         <PreviousButton controlsCallback={this.handleButtonCallback} />
                         <PlayButton />
                         <NextButton controlsCallback={this.handleButtonCallback} />

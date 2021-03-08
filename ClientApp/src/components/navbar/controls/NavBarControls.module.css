@@ -5,6 +5,13 @@
     cursor: pointer;
 }
 
+.headerLeft {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px;
+}
+
 .stationImage {
     width: 50px;
     height: 50px;
@@ -19,7 +26,7 @@
     composes: iconButton;
     color: #4682b4;
     text-align: center;
-    font-size: 30px;
+    /* font-size: 30px; */
     padding: 4px;
 }
 
@@ -29,7 +36,7 @@
 
 .headerSourceLink {
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 15px;
     padding: 6px;
 }
