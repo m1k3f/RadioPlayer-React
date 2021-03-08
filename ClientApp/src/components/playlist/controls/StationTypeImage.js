@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaHeadphones, FaVideo } from 'react-icons/fa';
 
 export default class StationTypeImage extends Component {
 
@@ -7,14 +8,15 @@ export default class StationTypeImage extends Component {
         let tags = (this.props.station.tags !== undefined) ? this.props.station.tags.split(",") : '';
 
         let iconStyle = {
-            fontSize: '14px'
+            width: '14px',
+            height: '14px'
         }
 
         if (tags.includes("video") || tags.includes("hls video")) {
-            content = <i className="fas fa-video" style={iconStyle}></i>
+            content = <FaVideo style={iconStyle} />
         }
         else {
-            content = <i className="fas fa-headphones" style={iconStyle}></i>
+            content = <FaHeadphones  style={iconStyle} />
         }
 
         return (content);

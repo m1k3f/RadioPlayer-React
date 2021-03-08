@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaFileUpload, FaSpinner } from 'react-icons/fa';
 
 import RadioContext from '../../context/RadioContext';
 import styles from './PlaylistControls.module.css';
@@ -170,16 +171,21 @@ export default class PlaylistImportButton extends Component {
 
     renderImportButton = () => {
         let content = null;
+        let iconStyle = {
+            width: '18px',
+            height: '18px'
+        };
+
         if (this.state.isLoading) {
             content = (
-                <i className="fas fa-spinner fa-spin fa-lg"></i>
+                <FaSpinner style={iconStyle} className="spin" />
             );
         }
         else {
             content = (
                 <button className={styles.playlistHeaderButton} 
                         onClick={this.handleImportButtonClick} title="Upload Playlist">
-                    <i className="fas fa-file-upload fa-lg"></i>
+                    <FaFileUpload style={iconStyle} />
                 </button> 
             );
         }

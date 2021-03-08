@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { ImFileEmpty } from 'react-icons/im';
 
 import RadioContext from '../context/RadioContext';
 import PlaylistStationItem from './PlaylistStationItem'
@@ -35,9 +36,14 @@ export default class PlaylistStations extends Component {
             });
         }
         else {
-            content = (
+            let iconStyle = {
+                width: '50px',
+                height: '50px'
+            };
+
+            content = (                
                 <p className={`fade-in ${styles.emptyPlaylist}`}>
-                    <i className="far fa-file fa-4x"></i>&nbsp;
+                    <ImFileEmpty style={iconStyle} />
                 </p>
             );
         }

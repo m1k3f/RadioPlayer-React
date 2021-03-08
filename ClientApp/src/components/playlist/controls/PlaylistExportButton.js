@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FaFileDownload, FaSpinner } from 'react-icons/fa';
 
 import RadioContext from '../../context/RadioContext';
 import styles from './PlaylistControls.module.css';
@@ -49,16 +50,21 @@ export default class PlaylistExportButton extends Component {
 
     renderExportButton = () => {
         let content = null;
+        let iconStyle = {
+            width: '18px',
+            height: '18px'
+        };
+
         if (this.state.isLoading) {
             content = (
-                <i className="fas fa-spinner fa-spin fa-lg"></i>
+                <FaSpinner style={iconStyle} className="spin" />
             );
         }
         else {
             content = (
                 <button className={styles.playlistHeaderButton} 
                         onClick={this.handleButtonClick} title="Download Playlist">
-                    <i className="fas fa-file-download fa-lg"></i>
+                    <FaFileDownload style={iconStyle} />
                 </button>
             );
         }

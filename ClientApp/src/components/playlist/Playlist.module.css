@@ -56,10 +56,13 @@
     margin-bottom: 4px;
     cursor: pointer;
     font-size: 14px;
+    padding-right: 2px;
 }
 
 .stationItemControls {
     min-width: 20px;
     white-space: nowrap;
+    display: flex;
+    flex-direction: row;
 }
 

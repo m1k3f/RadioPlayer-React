@@ -10,7 +10,7 @@
     transition: transform .2s;
     padding-left: 6px;
     padding-right: 6px;
-    margin-left: 4px;
+    margin-left: 2px;
 }
 
 .playlistHeaderButton:hover {
@@ -20,4 +20,6 @@
 .stationItemButton {
     padding: 4px;
     margin-right: 4px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
