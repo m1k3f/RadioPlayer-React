@@ -34,6 +34,7 @@ class RadioProvider extends Component {
             radioPlaylist = localStorage.getItem('rpPlaylist');
             if (radioPlaylist === undefined || radioPlaylist === null || radioPlaylist === '') {
                 radioPlaylist = {
+                    version: 1,
                     settings: {},
                     playlist: []
                 };
