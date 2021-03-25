@@ -134,3 +134,29 @@
     align-items: center;
 }
 
+@media screen and (max-width: 700px) {
+    .stationSearch {
+        width: 95vw;
+    }
+
+    .searchAdvancedRow {
+        justify-content: flex-start;
+        margin: 0 0 0 20px;
+    }
+
+    .searchResults {
+        width: 95%;
+    }
+
+    .searchResultItems {
+        padding: 0;
+    }
+
+    .searchResultItem {
+        justify-content: flex-start;
+    }
+
+    .searchResultItemDescription {
+        width: 60vw;
+    }
+}

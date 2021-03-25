@@ -9,7 +9,6 @@
     position: absolute;
     top: 15px;
     left: 20px;
-    padding: 6px;
 }
 
 .stationImage {
@@ -42,3 +41,12 @@
     padding: 6px;
 }
 
+@media screen and (max-width: 700px) {
+    .headerLeft {
+        left: 5px;
+    }
+
+    .headerSourceLink {
+        right: 5px;
+    }
+}
