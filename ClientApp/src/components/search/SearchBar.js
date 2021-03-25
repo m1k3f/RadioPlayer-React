@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { FaChevronDown, FaChevronUp, FaSearch, FaTimesCircle } from 'react-icons/fa';
 
 import RadioContext from '../context/RadioContext';

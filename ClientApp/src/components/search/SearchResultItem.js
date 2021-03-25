@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 import AddPlaylistStationButton from './controls/AddPlaylistStationButton'

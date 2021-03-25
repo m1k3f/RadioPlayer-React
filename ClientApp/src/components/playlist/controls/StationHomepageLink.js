@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { FaHome } from 'react-icons/fa';
 
 import styles from './PlaylistControls.module.css';

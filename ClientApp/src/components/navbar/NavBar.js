@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 import HeaderTitle from './controls/HeaderTitle';
 import Controls from './Controls';

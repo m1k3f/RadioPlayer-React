@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { ImFileEmpty } from 'react-icons/im';
 
 import RadioContext from '../context/RadioContext';

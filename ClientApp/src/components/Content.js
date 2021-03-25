@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 import Stream from './stream/Stream';
 import Playlist from './playlist/Playlist';

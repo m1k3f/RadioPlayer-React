@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 import RadioContext from '../context/RadioContext';
 import PlaylistHeader from './PlaylistHeader';

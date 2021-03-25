@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 import PlaylistClearButton from './controls/PlaylistClearButton';
 import PlaylistImportButton from './controls/PlaylistImportButton';

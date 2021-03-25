@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { FaGithub } from 'react-icons/fa';
 
 import styles from './NavBarControls.module.css';

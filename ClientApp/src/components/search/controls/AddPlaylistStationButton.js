@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { FaCheckCircle, FaPlusCircle } from 'react-icons/fa';
 
 import RadioContext from '../../context/RadioContext';

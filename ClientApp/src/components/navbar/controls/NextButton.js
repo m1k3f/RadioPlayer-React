@@ -1,4 +1,4 @@
-﻿import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { FaStepForward } from 'react-icons/fa';
 
 import RadioContext from '../../context/RadioContext';
