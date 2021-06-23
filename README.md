@@ -34,7 +34,7 @@
 - Move all search and search results to a popup window that can be shown/hidden as desired
 - Volume control
 - Show video for streams that contain video
-- Allow the option to create/import/show multiple playlists for better categorization of larger numbers of streams
+- Allow the option to create/import/display multiple playlists for better categorization of saved streams
 - Import/Export popup windows with options
 - Export playlists to one file or separate files
 - Drag & Drop functionality for station ordering or moving station to different playlist
